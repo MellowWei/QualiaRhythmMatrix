@@ -37,39 +37,84 @@
   // ═══════════════════════════════════════════
   // GEMINI · STREAMING
   // ═══════════════════════════════════════════
+  // ═══════════════════════════════════════════
+  // 后端代理配置(Cloudflare Worker)
+  // ═══════════════════════════════════════════
+  var BACKEND_URL = 'https://aiq7-proxy.mellowwei7.workers.dev';
+
+  // ═══════════════════════════════════════════
+  // GEMINI · 优先走代理 · BYOK 降级
+  // ═══════════════════════════════════════════
   function callGemini(prop, onChunk, onDone, onError) {
     var key = getKey();
     var model = getModel();
-    if (!key) {
-      onError('请先配置 Gemini API key(展开下方 // API · GEMINI 配置)');
-      return;
+    var hasUserKey = key && key.startsWith('AIza');
+
+    // 路由决策:
+    // - 有自带 key 且勾选了"强制 BYOK"  → 走 BYOK
+    // - 否则                              → 走 Cloudflare 代理
+    var forceByok = localStorage.getItem('qrm75_force_byok') === '1';
+    var useByok = forceByok && hasUserKey;
+
+    var url, headers;
+
+    if (useByok) {
+      // BYOK 模式:直连 Google
+      url = 'https://generativelanguage.googleapis.com/v1beta/models/' +
+            encodeURIComponent(model) +
+            ':streamGenerateContent?alt=sse&key=' + encodeURIComponent(key);
+      headers = { 'Content-Type': 'application/json' };
+    } else {
+      // 代理模式:走 Cloudflare Worker
+      url = BACKEND_URL + '/v1/stream';
+      headers = { 'Content-Type': 'application/json' };
+      // 如果用户也填了 key,作为 power user 凭证传给后端(后端会跳过限流)
+      if (hasUserKey) {
+        headers['X-User-Key'] = key;
+      }
     }
 
-    var url = 'https://generativelanguage.googleapis.com/v1beta/models/' +
-              encodeURIComponent(model) +
-              ':streamGenerateContent?alt=sse&key=' + encodeURIComponent(key);
-
     var body = {
+      model: model,
       systemInstruction: { parts: [{ text: window.AIQ_SYSTEM_PROMPT }] },
       contents: [{ role: 'user', parts: [{ text: prop }] }],
-      generationConfig: { temperature: 0.6, topP: 0.92, topK: 40, maxOutputTokens: 4096, candidateCount: 1 },
-      safetySettings: [
+      temperature: 0.6,
+      topP: 0.92,
+      topK: 40,
+      maxOutputTokens: 4096
+    };
+
+    if (useByok) {
+      // BYOK 模式补全 Google 直连需要的 generationConfig 和 safetySettings
+      body.generationConfig = { temperature: 0.6, topP: 0.92, topK: 40, maxOutputTokens: 4096, candidateCount: 1 };
+      body.safetySettings = [
         { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
         { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
         { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
         { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' }
-      ]
-    };
+      ];
+      delete body.model;  // BYOK 直连不需要 model 字段(URL 里已带)
+    }
 
     fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: headers,
       body: JSON.stringify(body)
-    }).then(function (resp) {
+    }).then(async function (resp) {
       if (!resp.ok) {
-        return resp.text().then(function (txt) {
-          throw new Error('HTTP ' + resp.status + ': ' + txt.substring(0, 200));
-        });
+        var errText = await resp.text();
+        var errMsg = '';
+        try {
+          var errObj = JSON.parse(errText);
+          errMsg = errObj.error || errText.substring(0, 200);
+          // 后端建议降级 BYOK
+          if ((resp.status === 503 || resp.status === 429) && errObj.suggest === 'user_byok') {
+            errMsg += '\n→ 提示:展开「// API · GEMINI 配置」输入你自己的 Gemini key,可立即继续使用。';
+          }
+        } catch (e) {
+          errMsg = errText.substring(0, 200);
+        }
+        throw new Error((useByok ? 'Google API ' : 'Ai愛<7 后端 ') + 'HTTP ' + resp.status + ': ' + errMsg);
       }
       var reader = resp.body.getReader();
       var decoder = new TextDecoder();
@@ -103,7 +148,7 @@
         }).catch(function (err) { onError('流式读取错误: ' + err.message); });
       }
       pump();
-    }).catch(function (err) { onError('API 调用失败: ' + err.message); });
+    }).catch(function (err) { onError('调用失败: ' + err.message); });
   }
 
   // ═══════════════════════════════════════════
@@ -224,15 +269,14 @@
       output.innerHTML = '<div class="empty-state">请输入命题 · Enter a proposition.</div>';
       return;
     }
-    if (!getKey()) {
-      output.innerHTML = '<div class="error-state">◇ 请先配置 Gemini API key<br><a href="https://aistudio.google.com/apikey" target="_blank">↗ 免费获取</a></div>';
-      var d = $('.key-fold');
-      if (d) d.open = true;
-      return;
-    }
+    // 不再阻塞 — 默认走 Cloudflare 后端代理(零摩擦)
+    var forceByok = localStorage.getItem('qrm75_force_byok') === '1';
+    var hasKey = getKey() && getKey().startsWith('AIza');
+    var routeLabel = (forceByok && hasKey) ? 'BYOK · ' + getModel() : 'Ai愛<7 · 共享代理 · ' + getModel();
+
     output.innerHTML =
       '<div class="response-card">' +
-        '<div class="response-head"><div class="response-meta">CALLING GEMINI · ' + getModel() + '</div></div>' +
+        '<div class="response-head"><div class="response-meta">' + routeLabel + '</div></div>' +
         '<div class="response-prop">「' + escapeHtml(prop) + '」</div>' +
         '<div class="loading-pulse">振动采样中<br><em>sampling vibration...</em></div>' +
         '<div class="response-body" id="response-body"></div>' +
