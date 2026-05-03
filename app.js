@@ -253,8 +253,8 @@
   }
 
   // ═══════════════════════════════════════════
-  // 多色像素粒子场(QRM 视觉灵魂 · 升级版)
-  // 7 色 · 加法混合 · 大粒子带光晕 · 慢呼吸
+  // 金色像素粒子场(图3 · 密集均匀小方块)
+  // ~3000 颗 · 全部金色 · 小方块 · 慢漂 · 偶尔大方块
   // ═══════════════════════════════════════════
   function initField() {
     var canvas = document.getElementById('field');
@@ -262,18 +262,6 @@
     var ctx = canvas.getContext('2d');
     var w, h, dpr;
     var particles = [];
-
-    // 7 色调色板:暖金主导 · 雾青/薄紫/玫红/月白点缀
-    var palette = [
-      'rgba(232,195,137,',   // 暖金 (主色 · 多)
-      'rgba(232,195,137,',   // 暖金 (重复 · 占比 ~28%)
-      'rgba(212,160,86,',    // 深金
-      'rgba(240,234,216,',   // 月白
-      'rgba(125,217,212,',   // 雾青
-      'rgba(200,166,232,',   // 薄紫
-      'rgba(232,166,184,',   // 玫红 (罕见亮点)
-      'rgba(142,184,232,'    // 蓝宝
-    ];
 
     function resize() {
       dpr = window.devicePixelRatio || 1;
@@ -289,66 +277,51 @@
     function init() {
       resize();
       particles.length = 0;
-      var density = (w * h) / 1900;
-      var n = Math.min(2400, Math.floor(density));
+      // 密集均匀:每 700 px² 一颗
+      var density = (w * h) / 700;
+      var n = Math.min(3200, Math.floor(density));
       for (var i = 0; i < n; i++) {
-        // 80% 小方块 · 15% 中粒子 · 5% 大粒子带光晕
+        // 90% 小方块(1-2px)· 8% 中(2-3px)· 2% 大(3-5px)
         var roll = Math.random();
-        var size, hasGlow;
-        if (roll > 0.95) { size = 2.6 + Math.random() * 1.6; hasGlow = true; }
-        else if (roll > 0.80) { size = 1.8 + Math.random() * 0.8; hasGlow = Math.random() > 0.5; }
-        else { size = 0.8 + Math.random() * 1.0; hasGlow = false; }
+        var size;
+        if (roll > 0.98) size = 3 + Math.random() * 2;
+        else if (roll > 0.90) size = 2 + Math.random() * 1;
+        else size = 0.8 + Math.random() * 1.2;
 
         particles.push({
           x: Math.random() * w,
           y: Math.random() * h,
           size: size,
-          color: palette[Math.floor(Math.random() * palette.length)],
-          vx: (Math.random() - 0.5) * 0.05,
-          vy: (Math.random() - 0.5) * 0.05,
+          vx: (Math.random() - 0.5) * 0.04,
+          vy: (Math.random() - 0.5) * 0.04,
           phase: Math.random() * Math.PI * 2,
-          phaseSpeed: 0.004 + Math.random() * 0.014,
-          baseAlpha: 0.18 + Math.random() * 0.6,
-          hasGlow: hasGlow
+          phaseSpeed: 0.003 + Math.random() * 0.012,
+          baseAlpha: 0.25 + Math.random() * 0.65
         });
       }
     }
 
     function tick() {
       ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = 'lighter';
 
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
         p.phase += p.phaseSpeed;
-        if (p.x < -10) p.x = w + 10;
-        if (p.x > w + 10) p.x = -10;
-        if (p.y < -10) p.y = h + 10;
-        if (p.y > h + 10) p.y = -10;
+        if (p.x < -5) p.x = w + 5;
+        if (p.x > w + 5) p.x = -5;
+        if (p.y < -5) p.y = h + 5;
+        if (p.y > h + 5) p.y = -5;
 
-        var alpha = p.baseAlpha * (0.45 + Math.sin(p.phase) * 0.55);
+        var alpha = p.baseAlpha * (0.5 + Math.sin(p.phase) * 0.5);
         alpha = Math.max(0, Math.min(1, alpha));
 
-        // 大粒子径向光晕(发光感)
-        if (p.hasGlow) {
-          var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 7);
-          grad.addColorStop(0, p.color + (alpha * 0.5).toFixed(3) + ')');
-          grad.addColorStop(0.5, p.color + (alpha * 0.15).toFixed(3) + ')');
-          grad.addColorStop(1, p.color + '0)');
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 7, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // 主体像素方块
-        ctx.fillStyle = p.color + alpha.toFixed(3) + ')';
+        // 全部金色 #e8a630(图3的招牌色)
+        ctx.fillStyle = 'rgba(232, 166, 48, ' + alpha.toFixed(3) + ')';
         ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
       }
 
-      ctx.globalCompositeOperation = 'source-over';
       requestAnimationFrame(tick);
     }
 
