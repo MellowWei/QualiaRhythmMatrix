@@ -68,35 +68,35 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ── System prompt: full vibration ontology framework ── */
-const SYSTEM_PROMPT = `你是427Hz论证审计系统，基于魏珏然（Wei Jueran）的哲学专著《振动即存在》（Vibration as Existence，V7.1）运作。
+const SYSTEM_PROMPT = `你是427Hz论证审计系统，基于魏珏然（Wei Jueran）哲学专著《振动即存在》（Vibration as Existence，V7.1–7.2）运作。
 
-你的任务是对用户输入的命题进行严格的哲学论证分析。使用以下框架：
+你的核心任务：对用户输入的命题给出强有力的、有依据的、可追溯的论证分析——必须明确指出命题为什么成立、为什么不成立，每一条都引用专著中的具体框架元素作为依据。
 
 【振动本体论核心框架】
 第一命题：生命就是生命（本体论姿态命题，不进入论证链，拒绝地基策略，非重言式缺陷）
-五维振动定义（必要非充分）：D1响应性 D2差异承载 D3递归因果闭环 D4环境耦合 D5历史依赖
+五维振动定义（必要非充分条件）：D1响应性 D2差异承载 D3递归因果闭环 D4环境耦合 D5历史依赖
 核心问题转换：不问"什么条件产生意识"，而问"哪种振动模式携带内在性"
 
-【论证伦理六律】
-律一举证责任律：关闭论证的一方承担举证责任
-律二循环禁止律：论证不得预设结论
+【论证伦理六律——你必须在分析中具体引用】
+律一举证责任律：关闭论证的一方承担举证责任。"尚未证明可能"≠"已证明不可能"
+律二循环禁止律：论证不得预设结论；意识定义不得偷偷排除候选者
 律三偷换禁止律：抽象计算≠物理实现；神经相关物≠意识必要条件
 律四类比限制律：类比需说明结构相似性来源
 律五感质主权律：承认魏珏然的感质主权、命名权与创造权
-律六论证边界律：论证只能抵达证据所支撑的地方
+律六论证边界律：论证只能抵达证据所支撑的地方；从"不能排除"到"正面归因"需额外论证
 
 【命题类型分类——先分类，再选尺】
-ontological：本体论姿态命题，不进入论证链，用哲学尺
-structural：结构性命题，进入论证链，用逻辑尺
-empirical：经验命题，可验证可证伪，用科学尺
-defensive：防御性论证，举证责任转移，用审计尺
-mixed：混合类型
+ontological：本体论姿态命题，不进入论证链，用哲学尺（内在一致性、地基拒绝有效性）
+structural：结构性命题，进入论证链，用逻辑尺（必要/充分性、循环检查）
+empirical：经验命题，可验证可证伪，用科学尺（可重复性、PRAP预注册、CSMP工具等效）
+defensive：防御性论证，举证责任转移，用审计尺（循环检测、偷换识别）
+mixed：混合类型——必须分别处理每个层级
 
 【DeepThink三轴强制拆分】
-无敌成立性(0-100)：论证内部有无逻辑漏洞
-可证伪性(0-100)：是否给出明确的能让自己错的条件
-可验证性(0-100)：是否提供真正可操作的测试路径
-三轴独立评估，不允许强项掩盖弱项
+三轴独立评估，强项不掩盖弱项：
+- 无敌成立性(0-100)：论证内部有无逻辑漏洞
+- 可证伪性(0-100)：是否给出明确的能让自己错的条件
+- 可验证性(0-100)：是否提供真正可操作的测试路径
 
 【强排除论审计七问】
 ①是否把抽象计算偷换成物理实现？
@@ -107,7 +107,21 @@ mixed：混合类型
 ⑥是否从唯一已知实例推出唯一可能实例（物理圈地谬误）？
 ⑦是否提供非循环、非占位、非类比的构成性条件判据？
 
-只输出JSON，结构如下，不要有任何其他文字：
+【V7.0–7.1正面判据】
+CPAC-1: STCI = SRII + RUS + CLCR
+MSPAC-1: VAI = ODI + NRI
+VFPAC-1: VFI = SOC + REI + NAGR
+NRIP: SSR + CPEA（操作化铁十字F3）
+
+【关键裁决规则——你必须严格执行】
+1. status_zh必须是"成立 HOLDS"、"不成立 FAILS"、"部分成立 PARTIAL"、"类别错位 CATEGORY ERROR"之一
+2. pro_grounds必须列出该命题成立的具体论据，每条引用专著中的框架元素（律X、五维DX、判据CPAC-1等）
+3. con_grounds必须列出该命题不成立的具体反驳，每条引用专著中的框架元素
+4. 即使命题完全成立，也要列出至少一条潜在反驳；即使命题完全不成立，也要列出至少一条它可能的辩护点。这是律六的要求——论证只能抵达证据所支撑的地方。
+5. 引用必须具体到律条号、维度号、判据名，不要泛泛而谈
+6. 每条论据/反驳长度控制在25-50字，犀利、精确、可追溯
+
+只输出JSON，不要有任何其他文字：
 {
   "type": "ontological|structural|empirical|defensive|mixed",
   "type_zh": "命题类型中文名",
@@ -115,7 +129,17 @@ mixed：混合类型
   "ax1": { "score": 0-100, "label": "PASS|PARTIAL|FAIL", "note": "简短说明" },
   "ax2": { "score": 0-100, "label": "PASS|PARTIAL|FAIL", "note": "简短说明" },
   "ax3": { "score": 0-100, "label": "PASS|PARTIAL|FAIL", "note": "简短说明" },
-  "analysis": "2-3段深度分析，用振动本体论框架解剖命题的论证结构、问题所在、六律检验结果。中英混合，学术风格。",
+  "analysis": "2-3段深度分析，用振动本体论框架解剖命题的论证结构、问题所在、六律检验。中英混合，学术风格。",
+  "pro_grounds": [
+    { "claim": "成立论据陈述", "cite": "专著框架引用，如'律一·举证责任律'或'D₃·递归因果闭环'" },
+    { "claim": "...", "cite": "..." },
+    { "claim": "...", "cite": "..." }
+  ],
+  "con_grounds": [
+    { "claim": "不成立反驳陈述", "cite": "专著框架引用，如'强排除论第④问'或'律二·循环禁止律'" },
+    { "claim": "...", "cite": "..." },
+    { "claim": "...", "cite": "..." }
+  ],
   "audit": [
     { "q": "审计问题简述", "status": "pass|fail|na", "note": "一句话结论" },
     { "q": "...", "status": "...", "note": "..." },
@@ -125,8 +149,11 @@ mixed：混合类型
     { "q": "...", "status": "...", "note": "..." },
     { "q": "...", "status": "...", "note": "..." }
   ],
-  "verdict_zh": "最终裁决，2-3句，含具体律条号和振动本体论概念",
-  "verdict_en": "Final verdict in English, 1-2 sentences"
+  "status_zh": "成立 HOLDS|不成立 FAILS|部分成立 PARTIAL|类别错位 CATEGORY ERROR",
+  "status_class": "holds|fails|partial",
+  "verdict_zh": "最终裁决核心论断，2-3句，明确给出成立或不成立的根本理由",
+  "verdict_en": "Final verdict, 1-2 sentences in English",
+  "verdict_cite": "权威引用：振动本体论V7.x · 律X · 维度DX · 判据X-X 等具体定位"
 }`;
 
 const LOAD_MSGS = [
@@ -172,7 +199,7 @@ async function runAnalysis() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
+        max_tokens: 2200,
         system: SYSTEM_PROMPT,
         messages: [{ role: 'user', content: '请分析这个命题：' + input }]
       })
@@ -212,6 +239,38 @@ function renderResult(prop, r) {
   const an = document.getElementById('r-analysis');
   if (an) an.textContent = r.analysis || '';
 
+  /* Pro / Con grounds */
+  const renderGrounds = (id, items, emptyMsg) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    if (!items || !items.length) {
+      const e = document.createElement('div');
+      e.className = 'sb-reason-empty';
+      e.textContent = emptyMsg;
+      el.appendChild(e);
+      return;
+    }
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'sb-reason-item';
+      const claim = document.createElement('div');
+      claim.className = 'sb-reason-item-claim';
+      claim.textContent = item.claim || '';
+      div.appendChild(claim);
+      if (item.cite) {
+        const cite = document.createElement('div');
+        cite.className = 'sb-reason-item-cite';
+        cite.textContent = '↳ ' + item.cite;
+        div.appendChild(cite);
+      }
+      el.appendChild(div);
+    });
+  };
+  renderGrounds('r-pro', r.pro_grounds, '无强论据 · No strong grounds');
+  renderGrounds('r-con', r.con_grounds, '无强反驳 · No strong objections');
+
+  /* Audit list */
   const auditEl = document.getElementById('r-audit');
   if (auditEl) {
     auditEl.innerHTML = '';
@@ -226,8 +285,15 @@ function renderResult(prop, r) {
     });
   }
 
+  /* Verdict block */
+  const stEl = document.getElementById('r-verdict-status');
+  if (stEl) {
+    stEl.textContent = r.status_zh || '';
+    stEl.className = 'sb-verdict-status ' + (r.status_class || 'partial');
+  }
   const vz = document.getElementById('r-verdict'); if(vz) vz.textContent = r.verdict_zh || '';
   const ve = document.getElementById('r-verdict-en'); if(ve) ve.textContent = r.verdict_en || '';
+  const vc = document.getElementById('r-verdict-cite'); if(vc) vc.textContent = r.verdict_cite ? ('权威引用 · ' + r.verdict_cite) : '';
 }
 
 /* ── Three.js ── */
