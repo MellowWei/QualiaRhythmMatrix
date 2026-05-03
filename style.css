@@ -270,8 +270,49 @@ html, body { width: 100%; height: 100%; background: var(--black); color: var(--w
 
 .sb-verdict { margin-top: 10px; padding: 8px 11px; border: 0.5px solid var(--amber); background: var(--amber-glow); }
 .sb-verdict-label { font-family: var(--mono); font-size: 7px; letter-spacing: 0.2em; color: rgba(232,166,48,0.55); margin-bottom: 4px; }
+.sb-verdict-status { font-family: var(--mono); font-size: 11px; color: var(--amber); letter-spacing: 0.12em; margin-bottom: 6px; font-weight: 700; }
+.sb-verdict-status.holds  { color: var(--green); }
+.sb-verdict-status.fails  { color: var(--red); }
+.sb-verdict-status.partial{ color: var(--amber); }
 .sb-verdict-text { font-family: var(--mono); font-size: 10px; color: var(--amber); line-height: 1.7; }
 .sb-verdict-en { font-family: var(--mono); font-size: 8px; color: rgba(232,166,48,0.55); margin-top: 3px; line-height: 1.6; }
+.sb-verdict-cite { font-family: var(--mono); font-size: 7.5px; color: rgba(232,166,48,0.45); letter-spacing: 0.1em; margin-top: 6px; padding-top: 5px; border-top: 0.5px dashed rgba(232,166,48,0.2); }
+
+/* ── Reasoning chain (pro / con) ── */
+.sb-reasoning {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+}
+.sb-reason-col {
+  border: 0.5px solid var(--border);
+  padding: 7px 9px;
+  background: rgba(255,255,255,0.012);
+}
+.sb-reason-pro { border-left: 2px solid rgba(134,239,172,0.4); }
+.sb-reason-con { border-left: 2px solid rgba(248,113,113,0.4); }
+.sb-reason-head {
+  font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.12em;
+  margin-bottom: 6px; padding-bottom: 4px;
+  border-bottom: 0.5px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+}
+.sb-reason-pro .sb-reason-head { color: var(--green); }
+.sb-reason-con .sb-reason-head { color: var(--red); }
+.sb-rh-icon { font-size: 9px; }
+.sb-reason-list { display: flex; flex-direction: column; gap: 6px; }
+.sb-reason-item {
+  font-family: var(--mono); font-size: 8.5px;
+  color: var(--muted); line-height: 1.6;
+}
+.sb-reason-item-claim {
+  color: rgba(240,240,240,0.85); margin-bottom: 2px;
+}
+.sb-reason-item-cite {
+  font-size: 7px; letter-spacing: 0.08em;
+  color: var(--muted2); margin-top: 2px;
+}
+.sb-reason-pro .sb-reason-item-cite { color: rgba(134,239,172,0.55); }
+.sb-reason-con .sb-reason-item-cite { color: rgba(248,113,113,0.55); }
+.sb-reason-empty { font-family: var(--mono); font-size: 7.5px; color: var(--muted2); font-style: italic; }
 
 .sb-error-msg { font-family: var(--mono); font-size: 9px; color: var(--red); text-align: center; padding: 8px 0; line-height: 1.6; }
 
