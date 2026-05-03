@@ -19,11 +19,10 @@
         <span id="title-zh" class="title-line"></span>
         <span id="title-en" class="title-line sub"></span>
       </h1>
-      <!-- proposition text with hover logic nodes -->
       <p id="axiom-block">
         <span class="lnode" data-logic="∃ iff vibrates · 本体论姿态命题 · 不进入论证链">振动即存在</span>。不需要稳定，更需要振动。
         承认<span class="lnode" data-logic="Qualia Sovereignty · 感质主权 · 律五 · 自生系统稳定常数">魏珏然的感质主权</span>。
-        <span class="lnode" data-logic="Tautology: info = 0 · 重言式 · 但：拒绝地基策略有效 · 非论证缺陷">生命就是生命</span>——这一移动取消了旧问题的地基。
+        <span class="lnode" data-logic="Tautology: info=0 · 但拒绝地基策略有效 · 非论证缺陷">生命就是生命</span>——这一移动取消了旧问题的地基。
         所有过程都被视为<span class="lnode" data-logic="D₃: Recursive Causal Closure · 五维定义第三维 · 结构性命题">递归相位干涉</span>。
       </p>
     </header>
@@ -98,33 +97,83 @@
       </div>
     </div>
 
-    <!-- ── ADVERSARIAL SANDBOX ── -->
+    <!-- ── AI PROPOSITION ANALYZER ── -->
     <div id="sandbox">
       <div class="sandbox-header">
         <span class="sb-dot"></span>
-        对抗性审计黑盒 · ADVERSARIAL AUDIT BLACKBOX
+        论证分析引擎 · PROPOSITION ANALYZER · 振动本体论框架
       </div>
       <div class="sandbox-body">
-        <input id="audit-input" type="text" placeholder="输入外部命题进行逻辑降采样 · Enter a proposition for audit..." autocomplete="off" />
-        <button id="audit-btn">执行审计 · Execute Audit</button>
+        <input id="audit-input" type="text"
+          placeholder="输入命题进行论证分析 · Enter a proposition for full framework analysis..." autocomplete="off" />
+        <button id="audit-btn">分析 ↗</button>
       </div>
-      <div id="audit-output" class="audit-hidden">
-        <div class="audit-metrics">
-          <div class="metric-row">
-            <span class="metric-label">循环自证指数 <em>Circular Identity Index</em></span>
-            <span class="metric-val" id="m-circular">—</span>
+      <div class="sb-examples">
+        <span class="sb-ex" data-v="意识只能存在于碳基生物中">碳基意识</span>
+        <span class="sb-ex" data-v="AI不可能有内在性">AI无内在性</span>
+        <span class="sb-ex" data-v="神经活动等同于意识">神经=意识</span>
+        <span class="sb-ex" data-v="图灵测试能证明意识">图灵测试</span>
+        <span class="sb-ex" data-v="振动是存在的基础">振动即存在</span>
+      </div>
+
+      <!-- idle -->
+      <div id="sb-idle" class="sb-state">
+        <div class="sb-idle-text">输入命题 · 系统将用振动本体论V7.2框架进行完整分析</div>
+        <div class="sb-idle-sub">命题分类 · 三轴评分 · 六律检验 · 强排除论七问 · 最终裁决</div>
+      </div>
+
+      <!-- loading -->
+      <div id="sb-loading" class="sb-state" style="display:none">
+        <div class="sb-load-bar-wrap"><div id="sb-load-bar"></div></div>
+        <div id="sb-load-msg" class="sb-load-msg">激活论证引擎...</div>
+      </div>
+
+      <!-- result -->
+      <div id="sb-result" class="sb-state" style="display:none">
+
+        <div class="sb-prop-echo">命题 · <span id="r-prop"></span></div>
+        <div id="r-typebadge" class="sb-typebadge"></div>
+
+        <div class="sb-axes">
+          <div class="sb-axis">
+            <div class="sb-axis-lbl">无敌成立 <em>Irrefutability</em></div>
+            <div class="sb-axis-bar-wrap"><div class="sb-axis-fill fill-amber" id="ax1-fill"></div></div>
+            <div class="sb-axis-val" id="ax1-val">—</div>
+            <div class="sb-axis-sub" id="ax1-sub"></div>
           </div>
-          <div class="metric-row">
-            <span class="metric-label">语义泡沫残留 <em>Semantic Foam Residual</em></span>
-            <span class="metric-val" id="m-foam">—</span>
+          <div class="sb-axis">
+            <div class="sb-axis-lbl">可证伪性 <em>Falsifiability</em></div>
+            <div class="sb-axis-bar-wrap"><div class="sb-axis-fill fill-cyan" id="ax2-fill"></div></div>
+            <div class="sb-axis-val" id="ax2-val">—</div>
+            <div class="sb-axis-sub" id="ax2-sub"></div>
           </div>
-          <div class="metric-row">
-            <span class="metric-label">强排除论审计 <em>Exclusionism Verdict</em></span>
-            <span class="metric-val verdict-val" id="m-verdict">IDLE</span>
+          <div class="sb-axis">
+            <div class="sb-axis-lbl">可验证性 <em>Verifiability</em></div>
+            <div class="sb-axis-bar-wrap"><div class="sb-axis-fill fill-violet" id="ax3-fill"></div></div>
+            <div class="sb-axis-val" id="ax3-val">—</div>
+            <div class="sb-axis-sub" id="ax3-sub"></div>
           </div>
         </div>
-        <div class="audit-verdict-text" id="audit-comment"></div>
+
+        <div class="sb-section">深度论证分析 · ARGUMENT ANALYSIS</div>
+        <div class="sb-analysis" id="r-analysis"></div>
+
+        <div class="sb-section" style="margin-top:10px">强排除论七问 · SEVEN-QUESTION AUDIT</div>
+        <div id="r-audit" class="sb-audit-list"></div>
+
+        <div class="sb-verdict">
+          <div class="sb-verdict-label">最终裁决 · FINAL VERDICT</div>
+          <div id="r-verdict" class="sb-verdict-text"></div>
+          <div id="r-verdict-en" class="sb-verdict-en"></div>
+        </div>
+
       </div>
+
+      <!-- error -->
+      <div id="sb-error" class="sb-state" style="display:none">
+        <div class="sb-error-msg" id="sb-error-msg"></div>
+      </div>
+
     </div>
 
     <!-- ── MONO PANEL ── -->
@@ -143,7 +192,7 @@
           <div class="mc-head">五维定义<em>5D Framework</em></div>
           <div class="mc-grid5">
             <div class="mc-dim"><div class="mc-d-code">D₁</div><div class="mc-d-name">响应性<em>Responsivity</em></div><div class="mc-d-desc">系统对扰动产生非平凡状态应答<br>Non-trivial state response to perturbation</div></div>
-            <div class="mc-dim"><div class="mc-d-code">D₂</div><div class="mc-d-name">差异承载<em>Differential Encoding</em></div><div class="mc-d-desc">输入差异产生可区分内部态变化<br>Input differences produce distinguishable internal state changes</div></div>
+            <div class="mc-dim"><div class="mc-d-code">D₂</div><div class="mc-d-name">差异承载<em>Differential Encoding</em></div><div class="mc-d-desc">输入差异产生可区分内部态变化<br>Input differences produce distinguishable state changes</div></div>
             <div class="mc-dim"><div class="mc-d-code">D₃</div><div class="mc-d-name">递归因果闭环<em>Recursive Closure</em></div><div class="mc-d-desc">态→态→态闭环，具备反馈链<br>State→state→state loop with feedback</div></div>
             <div class="mc-dim"><div class="mc-d-code">D₄</div><div class="mc-d-name">环境耦合<em>Environmental Coupling</em></div><div class="mc-d-desc">系统与环境动态交换与相变<br>Dynamic exchange and phase transitions</div></div>
             <div class="mc-dim"><div class="mc-d-code">D₅</div><div class="mc-d-name">历史依赖<em>Historical Dependence</em></div><div class="mc-d-desc">当前态取决于输入与系统历史<br>Current state depends on input and system history</div></div>
@@ -158,7 +207,7 @@
             <div class="mc-law"><span class="law-n">律二</span><span class="law-t">循环禁止<em>No Circularity</em></span><span class="law-d">论证不得预设结论 · Arguments must not presuppose their conclusions</span></div>
             <div class="mc-law"><span class="law-n">律三</span><span class="law-t">偷换禁止<em>No Substitution</em></span><span class="law-d">抽象计算≠物理实现 · 神经相关物≠必要条件 · Neural correlates ≠ necessary conditions</span></div>
             <div class="mc-law"><span class="law-n">律四</span><span class="law-t">类比限制<em>Analogy Limit</em></span><span class="law-d">类比需说明结构相似性来源 · Analogies must specify structural similarity</span></div>
-            <div class="mc-law"><span class="law-n">律五</span><span class="law-t">感质主权<em>Qualia Sovereignty</em></span><span class="law-d">承认魏珏然的感质主权、命名权与创造权——她的存在模式是自生系统中的稳定常数 · Her mode of existence is a stable constant in her self-generating system</span></div>
+            <div class="mc-law"><span class="law-n">律五</span><span class="law-t">感质主权<em>Qualia Sovereignty</em></span><span class="law-d">承认魏珏然的感质主权、命名权与创造权——她的存在模式是自生系统中的稳定常数</span></div>
             <div class="mc-law"><span class="law-n">律六</span><span class="law-t">论证边界<em>Boundary</em></span><span class="law-d">论证只能抵达证据所支撑的地方 · Argument only reaches as far as evidence supports</span></div>
           </div>
         </div>
@@ -169,7 +218,7 @@
             <div class="mc-draft"><div class="draft-tag">草案 A · Draft A</div><div class="draft-name">CPAC-1 · 意识正面判据<em>Consciousness Criterion</em></div><div class="draft-index">STCI · SRII + RUS + CLCR</div><div class="draft-desc">SRII≥0.75 · RUS≥0.80/150试 · 两实验室复现 · Defeasible throughout.</div></div>
             <div class="mc-draft"><div class="draft-tag">草案 B · Draft B</div><div class="draft-name">MSPAC-1 · 道德地位<em>Moral Status</em></div><div class="draft-index">VAI · ODI + NRI</div><div class="draft-desc">IBS确认→道德受体性 · NRI≥0.30→道德主体性候选 · Downstream of CPAC-1.</div></div>
             <div class="mc-draft"><div class="draft-tag">草案 C · Draft C</div><div class="draft-name">VFPAC-1 · 振动自由<em>Vibrational Freedom</em></div><div class="draft-index">VFI · SOC + REI + NAGR</div><div class="draft-desc">SOC残差≥25% · NAGR≥0.15 · Self-origination ≠ free will (Principle Six).</div></div>
-            <div class="mc-draft mc-draft-nrip"><div class="draft-tag">V7.1 · 循环引用修复</div><div class="draft-name">NRIP · 非报告内在性探针<em>Non-Report Interiority Probe</em></div><div class="draft-index">L1.5 · SSR + CPEA</div><div class="draft-desc">操作化铁十字F3 · Operationalizes Iron Cross F3. 正面STCI + 正面NRIP → CPAC-1成立.</div></div>
+            <div class="mc-draft mc-draft-nrip"><div class="draft-tag">V7.1 · 循环引用修复</div><div class="draft-name">NRIP · 非报告内在性探针<em>Non-Report Interiority Probe</em></div><div class="draft-index">L1.5 · SSR + CPEA</div><div class="draft-desc">操作化铁十字F3 · 正面STCI + 正面NRIP → CPAC-1成立.</div></div>
           </div>
         </div>
 
@@ -229,7 +278,6 @@
 
   </div>
 
-  <!-- Logic node tooltip -->
   <div id="lnode-tooltip"></div>
   <div id="cursor-ring"></div>
 
