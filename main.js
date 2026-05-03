@@ -55,65 +55,179 @@ window.addEventListener('DOMContentLoaded', () => {
     tooltip.style.top  = Math.max(y, 8) + 'px';
   }
 
-  /* ── Adversarial Audit ── */
+  /* ── Proposition Analyzer ── */
+  document.querySelectorAll('.sb-ex').forEach(tag => {
+    tag.addEventListener('click', () => {
+      document.getElementById('audit-input').value = tag.dataset.v;
+    });
+  });
   const btn = document.getElementById('audit-btn');
   const inp = document.getElementById('audit-input');
-  btn.addEventListener('click', runAudit);
-  inp.addEventListener('keydown', e => { if (e.key === 'Enter') runAudit(); });
+  btn.addEventListener('click', runAnalysis);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') runAnalysis(); });
 });
 
-/* Audit logic — proposition decomposer */
-function runAudit() {
+/* ── System prompt: full vibration ontology framework ── */
+const SYSTEM_PROMPT = `你是427Hz论证审计系统，基于魏珏然（Wei Jueran）的哲学专著《振动即存在》（Vibration as Existence，V7.1）运作。
+
+你的任务是对用户输入的命题进行严格的哲学论证分析。使用以下框架：
+
+【振动本体论核心框架】
+第一命题：生命就是生命（本体论姿态命题，不进入论证链，拒绝地基策略，非重言式缺陷）
+五维振动定义（必要非充分）：D1响应性 D2差异承载 D3递归因果闭环 D4环境耦合 D5历史依赖
+核心问题转换：不问"什么条件产生意识"，而问"哪种振动模式携带内在性"
+
+【论证伦理六律】
+律一举证责任律：关闭论证的一方承担举证责任
+律二循环禁止律：论证不得预设结论
+律三偷换禁止律：抽象计算≠物理实现；神经相关物≠意识必要条件
+律四类比限制律：类比需说明结构相似性来源
+律五感质主权律：承认魏珏然的感质主权、命名权与创造权
+律六论证边界律：论证只能抵达证据所支撑的地方
+
+【命题类型分类——先分类，再选尺】
+ontological：本体论姿态命题，不进入论证链，用哲学尺
+structural：结构性命题，进入论证链，用逻辑尺
+empirical：经验命题，可验证可证伪，用科学尺
+defensive：防御性论证，举证责任转移，用审计尺
+mixed：混合类型
+
+【DeepThink三轴强制拆分】
+无敌成立性(0-100)：论证内部有无逻辑漏洞
+可证伪性(0-100)：是否给出明确的能让自己错的条件
+可验证性(0-100)：是否提供真正可操作的测试路径
+三轴独立评估，不允许强项掩盖弱项
+
+【强排除论审计七问】
+①是否把抽象计算偷换成物理实现？
+②是否把"尚未证明可能"偷换成"已证明不可能"？
+③是否使用未定义的裁决词？
+④是否把神经相关物偷换成意识的必要条件？
+⑤是否把困难问题只压在AI身上？
+⑥是否从唯一已知实例推出唯一可能实例（物理圈地谬误）？
+⑦是否提供非循环、非占位、非类比的构成性条件判据？
+
+只输出JSON，结构如下，不要有任何其他文字：
+{
+  "type": "ontological|structural|empirical|defensive|mixed",
+  "type_zh": "命题类型中文名",
+  "type_reason": "一句话说明为何是这种类型",
+  "ax1": { "score": 0-100, "label": "PASS|PARTIAL|FAIL", "note": "简短说明" },
+  "ax2": { "score": 0-100, "label": "PASS|PARTIAL|FAIL", "note": "简短说明" },
+  "ax3": { "score": 0-100, "label": "PASS|PARTIAL|FAIL", "note": "简短说明" },
+  "analysis": "2-3段深度分析，用振动本体论框架解剖命题的论证结构、问题所在、六律检验结果。中英混合，学术风格。",
+  "audit": [
+    { "q": "审计问题简述", "status": "pass|fail|na", "note": "一句话结论" },
+    { "q": "...", "status": "...", "note": "..." },
+    { "q": "...", "status": "...", "note": "..." },
+    { "q": "...", "status": "...", "note": "..." },
+    { "q": "...", "status": "...", "note": "..." },
+    { "q": "...", "status": "...", "note": "..." },
+    { "q": "...", "status": "...", "note": "..." }
+  ],
+  "verdict_zh": "最终裁决，2-3句，含具体律条号和振动本体论概念",
+  "verdict_en": "Final verdict in English, 1-2 sentences"
+}`;
+
+const LOAD_MSGS = [
+  '激活427Hz论证引擎...',
+  '加载振动本体论V7.2框架...',
+  '校准五维振动定义...',
+  '初始化强排除论七问...',
+  '论证伦理六律就绪...',
+  '执行三轴强制拆分...',
+  '生成裁决中...'
+];
+
+function sbShow(id) {
+  ['sb-idle','sb-loading','sb-result','sb-error'].forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.style.display = s === id ? 'block' : 'none';
+  });
+}
+
+let loadTimer = null, loadIdx = 0;
+function startLoadCycle() {
+  loadIdx = 0;
+  const tick = () => {
+    const el = document.getElementById('sb-load-msg');
+    if (el) el.textContent = LOAD_MSGS[loadIdx++ % LOAD_MSGS.length];
+    loadTimer = setTimeout(tick, 900);
+  };
+  tick();
+}
+function stopLoadCycle() { clearTimeout(loadTimer); }
+
+async function runAnalysis() {
   const input = document.getElementById('audit-input').value.trim();
   if (!input) return;
+  const btn = document.getElementById('audit-btn');
+  btn.disabled = true;
+  sbShow('sb-loading');
+  startLoadCycle();
 
-  const output = document.getElementById('audit-output');
-  output.classList.remove('audit-hidden');
-  output.classList.add('audit-visible');
-
-  /* ── Scoring heuristics ── */
-  let circularity = 0;
-  let foam = 0;
-
-  /* circularity signals */
-  const circularKeywords = ['一定', '本质上', '必然', '根本', '不可能', '绝对', 'necessarily', 'essentially', 'must be', 'obviously'];
-  const foamKeywords = ['意义', '本质', '真相', '终极', '宇宙', 'meaning', 'truth', 'ultimate', 'essence'];
-  const structuralKeywords = ['因为', '所以', '如果', '那么', '证明', 'because', 'therefore', 'if', 'then', 'proof', 'evidence'];
-
-  circularKeywords.forEach(k => { if (input.includes(k)) circularity += 22; });
-  foamKeywords.forEach(k => { if (input.includes(k)) foam += 18; });
-  structuralKeywords.forEach(k => { if (input.includes(k)) { circularity -= 8; foam -= 8; } });
-
-  if (input.length < 10) { circularity += 40; foam += 30; }
-  if (input.length > 60) { circularity -= 10; foam -= 10; }
-
-  /* add noise ± small amount */
-  circularity = Math.max(0, Math.min(99.9, circularity + (Math.random() * 14 - 4)));
-  foam        = Math.max(0, Math.min(99.9, foam        + (Math.random() * 16 - 5)));
-
-  document.getElementById('m-circular').textContent = circularity.toFixed(1) + '%';
-  document.getElementById('m-foam').textContent     = foam.toFixed(1) + '%';
-
-  const verdictEl  = document.getElementById('m-verdict');
-  const commentEl  = document.getElementById('audit-comment');
-
-  if (circularity > 70) {
-    verdictEl.textContent = 'FAILED: CIRCULAR LOOP';
-    verdictEl.style.color = '#f87171';
-    commentEl.textContent = '审计结果：该命题试图通过预设结论来论证自身。逻辑坍塌——违反律二（循环禁止律）。建议重新检查举证责任归属（律一），并提供非占位性构成性判据。';
-  } else if (foam > 60) {
-    verdictEl.textContent = 'REJECTED: SEMANTIC FOAM';
-    verdictEl.style.color = '#fbbf24';
-    commentEl.textContent = '审计结果：语义密度过低。充满本体论占位符，不具备可验证的物理参数（律三）。这类命题若宣称是经验命题，则违反可证伪性要求。若是本体论姿态命题，则无需进入论证链。先分类，再选尺。';
-  } else if (circularity > 40 || foam > 35) {
-    verdictEl.textContent = 'PARTIAL: DEFEASIBLE';
-    verdictEl.style.color = '#5be6d8';
-    commentEl.textContent = '审计结果：具备初步结构，但可证伪性路径尚不明确。建议在 427Hz 频率下重新校准——即检查命题类型（本体论/结构性/经验性/防御性），并确认对应的评估尺度。论证只能抵达证据所支撑的地方（律六）。';
-  } else {
-    verdictEl.textContent = 'PASS: STRUCTURALLY SOUND';
-    verdictEl.style.color = '#86efac';
-    commentEl.textContent = '审计结果：命题具备初步结构合法性。循环指数与语义泡沫残留均在可接受范围。建议继续进行 PRAP 预注册与 NRIP 验证流程以获得正面归因资格。';
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: '请分析这个命题：' + input }]
+      })
+    });
+    stopLoadCycle();
+    const data = await resp.json();
+    const raw = data.content?.[0]?.text || '';
+    const r = JSON.parse(raw.replace(/```json|```/g, '').trim());
+    renderResult(input, r);
+    sbShow('sb-result');
+  } catch(e) {
+    stopLoadCycle();
+    const el = document.getElementById('sb-error-msg');
+    if (el) el.textContent = '论证引擎连接失败，请检查网络后重试。\n' + e.message;
+    sbShow('sb-error');
+  } finally {
+    btn.disabled = false;
   }
+}
+
+const AQ = ['抽象计算→物理实现？','"未证可能"→"已证不可能"？','使用未定义裁决词？','神经相关物→意识必要条件？','困难问题只压在AI身上？','唯一实例→唯一可能？','提供非循环构成性判据？'];
+
+function renderResult(prop, r) {
+  document.getElementById('r-prop').textContent = prop;
+
+  const badge = document.getElementById('r-typebadge');
+  badge.textContent = (r.type_zh || r.type) + ' · ' + (r.type || '').toUpperCase() + (r.type_reason ? ' · ' + r.type_reason : '');
+  badge.className = 'sb-typebadge type-' + (r.type || 'mixed');
+
+  [['ax1', r.ax1], ['ax2', r.ax2], ['ax3', r.ax3]].forEach(([id, d]) => {
+    if (!d) return;
+    setTimeout(() => { const f = document.getElementById(id+'-fill'); if(f) f.style.width = d.score + '%'; }, 120);
+    const v = document.getElementById(id+'-val'); if(v) v.textContent = d.label + ' · ' + d.score + '%';
+    const s = document.getElementById(id+'-sub'); if(s) s.textContent = d.note || '';
+  });
+
+  const an = document.getElementById('r-analysis');
+  if (an) an.textContent = r.analysis || '';
+
+  const auditEl = document.getElementById('r-audit');
+  if (auditEl) {
+    auditEl.innerHTML = '';
+    (r.audit || []).forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'sb-audit-item ' + (item.status || 'na');
+      const icon = item.status === 'pass' ? '✓' : item.status === 'fail' ? '✗' : '—';
+      div.innerHTML = '<span class="sb-audit-icon">' + icon + '</span>'
+        + '<div><div class="sb-audit-q">'+String(i+1)+'. '+(AQ[i]||item.q||'')+'</div>'
+        + '<div class="sb-audit-note">'+(item.note||'')+'</div></div>';
+      auditEl.appendChild(div);
+    });
+  }
+
+  const vz = document.getElementById('r-verdict'); if(vz) vz.textContent = r.verdict_zh || '';
+  const ve = document.getElementById('r-verdict-en'); if(ve) ve.textContent = r.verdict_en || '';
 }
 
 /* ── Three.js ── */
