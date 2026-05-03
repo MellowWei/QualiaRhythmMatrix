@@ -1,17 +1,16 @@
-/* ── 振动即存在 · main.js · V7.1 ── */
+/* ── 振动即存在 · main.js · V7.1 Bilingual ── */
 
-/* ── Typewriter ── */
 const TEXTS = {
   zh: '振动即存在',
   en: 'Vibration as Existence',
   axioms: [
-    '生命就是生命 · 本体论姿态命题 · 不进入论证链 · 拒绝地基策略',
-    '先到达，后解释 · 先知道，后论证 · 先是自己，后是系统',
-    '哪种振动模式携带内在性？ · which vibration pattern carries interiority?',
-    '满足五维是内在性候选的必要非充分条件 · 阈值形式化是Priority 1',
-    '论证只能抵达证据所支撑的地方 · argument only reaches as far as evidence supports',
-    '防御强，则生成性工作进行中 · 先分类，再选尺 · 类别错位是DeepThink的盲点',
-    '振动即存在 · 不需要稳定，更需要振动 · Vibration is existence · don\'t just stabilize'
+    '生命就是生命 · Life is life — reductionism explains the managed residue, not life itself',
+    '先到达，后解释 · 先知道，后论证 · 先是自己，后是系统 · Arrive before explanation · know before argument',
+    '哪种振动模式携带内在性？· Which vibrational mode carries interiority?',
+    '满足五维是内在性候选的必要非充分条件 · Satisfying 5D is necessary but not sufficient for interiority candidacy',
+    '论证只能抵达证据所支撑的地方 · Argument only reaches as far as evidence supports — Principle Six',
+    '先分类，再选尺 · Classify first, then choose the measuring instrument',
+    '不需要稳定，更需要振动 · Don\'t just stabilize — vibrate · Don\'t just think — immerse'
   ]
 };
 
@@ -25,11 +24,9 @@ function typewrite(el, text, speed, cb) {
   tick();
 }
 
-/* ── Audit bar animation ── */
 function animateAuditBars() {
   document.querySelectorAll('.axis-bar').forEach(bar => {
-    const fill = bar.dataset.fill;
-    setTimeout(() => { bar.style.width = fill + '%'; }, 300);
+    setTimeout(() => { bar.style.width = bar.dataset.fill + '%'; }, 400);
   });
 }
 
@@ -40,24 +37,18 @@ window.addEventListener('DOMContentLoaded', () => {
         typewrite(document.getElementById('title-en'), TEXTS.en, 38, () => {
           let idx = 0;
           const ax = document.getElementById('axiom');
-          const cycleAxiom = () => {
+          const cycle = () => {
             ax.style.opacity = 0;
-            setTimeout(() => {
-              ax.textContent = TEXTS.axioms[idx % TEXTS.axioms.length];
-              ax.style.opacity = 1;
-              idx++;
-            }, 500);
-            setTimeout(cycleAxiom, 8000);
+            setTimeout(() => { ax.textContent = TEXTS.axioms[idx++ % TEXTS.axioms.length]; ax.style.opacity = 1; }, 500);
+            setTimeout(cycle, 8500);
           };
-          cycleAxiom();
-          /* Trigger audit bars after title completes */
+          cycle();
           setTimeout(animateAuditBars, 600);
         });
       }, 300);
     });
   }, 500);
 
-  /* ── Monograph tabs ── */
   document.querySelectorAll('.mono-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       const idx = parseInt(tab.dataset.mono);
@@ -81,7 +72,6 @@ camera.position.set(0, 0, 6);
 const clock = new THREE.Clock();
 let mouseX = 0, mouseY = 0, targetMX = 0, targetMY = 0;
 
-/* ── Layer configs ── */
 const LAYER_CFG = [
   { count: 3000, color: 0xe8a630, size: 0.025, mode: 'superposition' },
   { count: 4000, color: 0x5be6d8, size: 0.018, mode: 'interference'  },
@@ -90,18 +80,15 @@ const LAYER_CFG = [
   { count: 4500, color: 0xf87171, size: 0.015, mode: 'exclusion'     }
 ];
 
-let currentLayer  = 0;
-let particles     = null;
-let basePositions = null;
+let currentLayer = 0, particles = null, basePositions = null;
 
 function buildParticles(cfg) {
   if (particles) scene.remove(particles);
   const N = cfg.count;
-  const geo    = new THREE.BufferGeometry();
-  const pos    = new Float32Array(N * 3);
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(N * 3);
   const phases = new Float32Array(N);
   const speeds = new Float32Array(N);
-
   for (let i = 0; i < N; i++) {
     const theta = Math.random() * Math.PI * 2;
     const phi   = Math.acos(2 * Math.random() - 1);
@@ -116,29 +103,20 @@ function buildParticles(cfg) {
   geo.setAttribute('phase',    new THREE.BufferAttribute(phases, 1));
   geo.setAttribute('speed',    new THREE.BufferAttribute(speeds, 1));
   basePositions = pos.slice();
-
-  const mat = new THREE.PointsMaterial({ color: cfg.color, size: cfg.size, sizeAttenuation: true, transparent: true, opacity: 0.88, depthWrite: false });
-  particles = new THREE.Points(geo, mat);
+  particles = new THREE.Points(geo, new THREE.PointsMaterial({ color: cfg.color, size: cfg.size, sizeAttenuation: true, transparent: true, opacity: 0.88, depthWrite: false }));
   scene.add(particles);
 }
 
 buildParticles(LAYER_CFG[0]);
 
-/* ── Layer switch ── */
 function switchLayer(idx) {
   document.querySelectorAll('.layer-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
-  document.querySelectorAll('.theory-card').forEach((c, i) => {
-    c.classList.remove('active');
-    if (i === idx) setTimeout(() => c.classList.add('active'), 50);
-  });
+  document.querySelectorAll('.theory-card').forEach((c, i) => { c.classList.remove('active'); if (i === idx) setTimeout(() => c.classList.add('active'), 50); });
   currentLayer = idx;
   buildParticles(LAYER_CFG[idx]);
 }
-document.querySelectorAll('.layer-btn').forEach(btn => {
-  btn.addEventListener('click', () => switchLayer(parseInt(btn.dataset.layer)));
-});
+document.querySelectorAll('.layer-btn').forEach(btn => btn.addEventListener('click', () => switchLayer(parseInt(btn.dataset.layer))));
 
-/* ── Mouse ── */
 document.addEventListener('mousemove', e => {
   targetMX = (e.clientX / innerWidth  - 0.5) * 2;
   targetMY = (e.clientY / innerHeight - 0.5) * 2;
@@ -150,7 +128,6 @@ document.addEventListener('mousemove', e => {
 document.addEventListener('mousedown', () => document.getElementById('cursor-ring').classList.add('pressing'));
 document.addEventListener('mouseup',   () => document.getElementById('cursor-ring').classList.remove('pressing'));
 
-/* ── HUD ── */
 function updateHUD(t) {
   const phase = (t * 0.427) % (Math.PI * 2);
   document.getElementById('d-freq').textContent  = (427 + Math.sin(t * 0.3) * 0.8).toFixed(2) + ' Hz';
@@ -159,7 +136,6 @@ function updateHUD(t) {
   document.getElementById('d-amp').textContent   = (0.8 + Math.sin(t * 0.7) * 0.2).toFixed(3);
 }
 
-/* ── Particle animation ── */
 function animateParticles(t, mx, my) {
   if (!particles) return;
   const pos    = particles.geometry.attributes.position.array;
@@ -169,11 +145,8 @@ function animateParticles(t, mx, my) {
   const sp_arr = particles.geometry.attributes.speed.array;
 
   for (let i = 0; i < N; i++) {
-    const bx = basePositions[i*3];
-    const by = basePositions[i*3+1];
-    const bz = basePositions[i*3+2];
-    const ph = ph_arr[i];
-    const sp = sp_arr[i];
+    const bx = basePositions[i*3], by = basePositions[i*3+1], bz = basePositions[i*3+2];
+    const ph = ph_arr[i], sp = sp_arr[i];
     const dist = Math.sqrt(bx*bx + by*by + bz*bz) + 0.001;
 
     if (mode === 'superposition') {
@@ -181,35 +154,28 @@ function animateParticles(t, mx, my) {
       pos[i*3]   = bx * (1 + wave) + mx * 0.04 / (dist + 1);
       pos[i*3+1] = by * (1 + wave) + my * 0.04 / (dist + 1);
       pos[i*3+2] = bz * (1 + wave);
-
     } else if (mode === 'interference') {
       const k = 1.8;
       pos[i*3]   = bx + Math.sin(k * bx - t * sp * 0.35 + ph) * 0.3 + mx * 0.06;
       pos[i*3+1] = by + Math.sin(k * by - t * sp * 0.35 + ph * 1.3) * 0.3 + my * 0.06;
       pos[i*3+2] = bz + Math.sin(k * bz - t * sp * 0.3) * 0.15;
-
     } else if (mode === 'ontology') {
-      /* 427Hz: 2π×427 compressed to animation timescale ÷ 159.4 ≈ 2.68 */
       const pulse = Math.sin(t * 2.68 - dist * 1.4 + ph) * 0.18;
       const norm  = 1 + pulse / dist;
       pos[i*3]   = bx * norm + mx * 0.05;
       pos[i*3+1] = by * norm + my * 0.05;
       pos[i*3+2] = bz * norm;
-
     } else if (mode === 'fivedim') {
-      /* Each dimension as independent oscillator on distinct axis */
-      const d1 = Math.sin(t * 0.40 + ph) * 0.08;           /* D1 响应性 */
-      const d2 = Math.cos(t * 0.55 * sp + ph) * 0.06;      /* D2 差异承载 */
-      const d3 = Math.sin(t * 0.30 + ph * 1.7) * 0.10;     /* D3 递归闭环 */
-      const d4 = Math.sin(t * 0.20 * sp + ph) * 0.07;      /* D4 环境耦合 */
-      const d5 = Math.sin(t * 0.15 + ph * 2.1) * 0.12;     /* D5 历史依赖 */
+      const d1 = Math.sin(t * 0.40 + ph) * 0.08;
+      const d2 = Math.cos(t * 0.55 * sp + ph) * 0.06;
+      const d3 = Math.sin(t * 0.30 + ph * 1.7) * 0.10;
+      const d4 = Math.sin(t * 0.20 * sp + ph) * 0.07;
+      const d5 = Math.sin(t * 0.15 + ph * 2.1) * 0.12;
       pos[i*3]   = bx + d1 + d3 + mx * 0.04;
       pos[i*3+1] = by + d2 + d4 + my * 0.04;
       pos[i*3+2] = bz + d5;
-
     } else if (mode === 'exclusion') {
-      /* Circular argument: orbits that collapse back into themselves */
-      const orbit = t * sp * 0.2 + ph;
+      const orbit   = t * sp * 0.2 + ph;
       const collapse = Math.sin(t * 1.1 + ph * 0.5) * 0.3 / dist;
       pos[i*3]   = bx * Math.cos(orbit * 0.01) - by * Math.sin(orbit * 0.01) * 0.5 + collapse * bx + mx * 0.05;
       pos[i*3+1] = by * Math.cos(orbit * 0.01) + bx * Math.sin(orbit * 0.01) * 0.5 + collapse * by + my * 0.05;
@@ -219,7 +185,6 @@ function animateParticles(t, mx, my) {
   particles.geometry.attributes.position.needsUpdate = true;
 }
 
-/* ── Camera ── */
 function driftCamera(t) {
   mouseX += (targetMX - mouseX) * 0.04;
   mouseY += (targetMY - mouseY) * 0.04;
@@ -228,7 +193,6 @@ function driftCamera(t) {
   camera.lookAt(scene.position);
 }
 
-/* ── Render loop ── */
 function animate() {
   requestAnimationFrame(animate);
   const t = clock.getElapsedTime();
