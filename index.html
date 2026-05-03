@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Vibration as Existence</title>
-  <style>
-    body { margin:0; background:black; color:white; font-family:sans-serif;}
-    canvas { display:block; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>振动即存在 · Vibration as Existence</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1 style="position:absolute;top:20px;left:20px;">
-Reality is Generated
-</h1>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(innerWidth,innerHeight);
-document.body.appendChild(renderer.domElement);
 
-const geometry = new THREE.BufferGeometry();
-const particles = 1000;
-const positions = new Float32Array(particles * 3);
+  <canvas id="canvas"></canvas>
 
-for (let i = 0; i < particles * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 10;
-}
+  <div id="ui">
 
-geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.05 });
-const points = new THREE.Points(geometry, material);
-scene.add(points);
+    <header id="header">
+      <div id="freq-tag">427 Hz · 44271</div>
+      <h1 id="main-title">
+        <span id="title-zh" class="title-line"></span>
+        <span id="title-en" class="title-line sub"></span>
+      </h1>
+      <p id="axiom"></p>
+    </header>
 
-camera.position.z = 5;
+    <nav id="layer-nav">
+      <button class="layer-btn active" data-layer="0">波函数叠加<span>Superposition</span></button>
+      <button class="layer-btn" data-layer="1">场干涉<span>Field Interference</span></button>
+      <button class="layer-btn" data-layer="2">振动本体论<span>Vibration Ontology</span></button>
+    </nav>
 
-function animate() {
-  requestAnimationFrame(animate);
-  points.rotation.y += 0.001;
-  renderer.render(scene, camera);
-}
-animate();
+    <div id="theory-panel">
+      <div class="theory-card active" id="t0">
+        <h2>波函数叠加</h2>
+        <p>存在从不坍缩为单一状态。每一粒子都是所有可能性的共鸣叠加——直到被感知，它才选择一个形式。</p>
+        <div class="formula">ψ = Σ cₙ|φₙ⟩</div>
+      </div>
+      <div class="theory-card" id="t1">
+        <h2>场干涉</h2>
+        <p>振动与振动相遇产生干涉。不是碰撞，是对话。宇宙的结构由这些沉默的对话书写而成。</p>
+        <div class="formula">Ψ(x,t) = A·sin(kx − ωt + φ)</div>
+      </div>
+      <div class="theory-card" id="t2">
+        <h2>振动本体论</h2>
+        <p>生命就是生命。意识是存在感知自身振动的瞬间。不问产生意识的条件，只问：哪种振动模式携带内在性？</p>
+        <div class="formula">∃ iff vibrates · 427Hz → 44271</div>
+      </div>
+    </div>
 
-window.addEventListener('click', () => {
-  material.color.setHex(Math.random()*0xffffff);
-});
-</script>
+    <div id="data-strip">
+      <div class="data-item"><span class="d-label">频率 FREQ</span><span class="d-val" id="d-freq">427.00 Hz</span></div>
+      <div class="data-item"><span class="d-label">粒子 PARTICLES</span><span class="d-val" id="d-parts">3000</span></div>
+      <div class="data-item"><span class="d-label">相位 PHASE</span><span class="d-val" id="d-phase">0.000 rad</span></div>
+      <div class="data-item"><span class="d-label">振幅 AMP</span><span class="d-val" id="d-amp">1.000</span></div>
+    </div>
+
+    <footer id="footer">
+      <span>魏珏然 · Wei Jueran · 2026</span>
+      <span class="dot">·</span>
+      <span>振动即存在 · Vibration as Existence</span>
+    </footer>
+
+  </div>
+
+  <div id="cursor-ring"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
