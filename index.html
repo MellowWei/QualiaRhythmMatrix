@@ -170,6 +170,104 @@
       font-size: 12px;
       transition: 0.2s ease;
     }
+
+    .nav-links a.aiq-link {
+      color: var(--pink);
+      border-color: rgba(255,79,216,0.28);
+      background: rgba(255,79,216,0.07);
+    }
+    .nav-links a.aiq-link:hover {
+      background: rgba(255,79,216,0.16);
+      border-color: rgba(255,79,216,0.5);
+      box-shadow: 0 0 24px rgba(255,79,216,0.2);
+    }
+
+    .btn-aiq {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,79,216,0.4);
+      padding: 12px 18px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      color: #fff;
+      font-weight: 800;
+      background: linear-gradient(135deg, rgba(255,79,216,0.22), rgba(139,92,255,0.18));
+      box-shadow: 0 0 28px rgba(255,79,216,0.18);
+      letter-spacing: 0.02em;
+    }
+    .btn-aiq:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 42px rgba(255,79,216,0.32);
+      background: linear-gradient(135deg, rgba(255,79,216,0.34), rgba(139,92,255,0.28));
+    }
+    .btn-aiq .aiq-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 12px var(--pink);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    .aiq-bridge-banner {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,79,216,0.24);
+      background: rgba(255,79,216,0.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: rgba(255,79,216,0.9);
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+    }
+    .aiq-bridge-banner .aiq-bridge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--pink); flex-shrink: 0;
+      box-shadow: 0 0 10px var(--pink);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    .send-aiq-btn {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,79,216,0.38);
+      background: linear-gradient(135deg, rgba(255,79,216,0.14), rgba(139,92,255,0.1));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.22s ease;
+      letter-spacing: 0.04em;
+    }
+    .send-aiq-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(255,79,216,0.24);
+      background: linear-gradient(135deg, rgba(255,79,216,0.24), rgba(139,92,255,0.18));
+    }
+    .send-aiq-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+      transform: none;
+    }
+    .send-aiq-status {
+      margin-top: 8px;
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--pink);
+      text-align: center;
+      letter-spacing: 0.08em;
+      min-height: 16px;
+    }
     .nav-links a:hover, .nav-links a.active {
       color: #fff;
       border-color: rgba(77,234,255,0.28);
@@ -729,14 +827,15 @@
     </a>
 
     <div class="nav-links" id="navLinks">
+      <a href="#analyzer" class="aiq-link">分析器 ⚡</a>
       <a href="#lgs-chain">公理链</a>
       <a href="#definition">定义</a>
       <a href="#ee-conditions">EE条件</a>
       <a href="#self-loop">自指环</a>
       <a href="#formula">总公式</a>
       <a href="#protocol">协议</a>
-      <a href="#analyzer">分析器</a>
       <a href="#archive">档案</a>
+      <a href="https://mellowwei.github.io/Ai-Q-10/#chat" target="_blank" class="aiq-link" style="font-weight:900;">AiQ愛&lt;7 ↗</a>
     </div>
 
     <div class="nav-actions">
@@ -1216,6 +1315,16 @@
             <button class="chip sample" data-sample="重复不会提高激活阈值，而是降低它。这对情绪性与奖赏性刺激尤其成立。">阈值反转</button>
             <button class="chip sample" data-sample="音乐可以作为身体返回自身的节律接口。">音乐接口</button>
           </div>
+
+          <div class="aiq-bridge-banner">
+            <span class="aiq-bridge-dot"></span>
+            AiQ愛&lt;7 · 战略推理位 · Gemini + DeepSeek · 深层反证位在线
+          </div>
+          <button class="send-aiq-btn" id="sendAiqBtn" onclick="sendToAiQ()">
+            <span class="aiq-dot" style="width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 10px var(--pink);animation:pulse 1.8s ease-in-out infinite;flex-shrink:0;"></span>
+            发送分析结果到 AiQ愛&lt;7 · Send to AiQ愛&lt;7
+          </button>
+          <div class="send-aiq-status" id="sendAiqStatus"></div>
         </div>
         <div class="result" id="result">
           <div class="num">LGS AUDIT OUTPUT</div>
@@ -1408,6 +1517,47 @@
     window.addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });
     window.addEventListener("mouseleave", () => mouse.active = false);
     resizeCanvas(); drawStars(); drawParticles();
+
+    // ===== AiQ愛<7 BRIDGE =====
+    function sendToAiQ() {
+      const prop = $("#propInput").value.trim();
+      const resultEl = $("#result");
+      const statusEl = $("#sendAiqStatus");
+      const btn = $("#sendAiqBtn");
+
+      if (!prop) {
+        statusEl.textContent = "请先输入命题 / Enter a proposition first";
+        return;
+      }
+
+      // Build payload from current analysis
+      const resultText = resultEl ? resultEl.innerText : "";
+      const payload = {
+        source: "QualiaRhythmMatrix · LGS审计引擎",
+        proposition: prop,
+        analysis: resultText,
+        timestamp: new Date().toISOString(),
+        target_ai: "AiQ愛<7",
+        lgs_context: "以下是来自QualiaRhythmMatrix LGS审计引擎的分析结果，请以AiQ愛<7的战略推理位（深层反证位）对此命题进行扩展推理与审计："
+      };
+
+      // Write to localStorage for Ai-Q-10 to pick up
+      try {
+        localStorage.setItem("qrm_inject", JSON.stringify(payload));
+        statusEl.textContent = "✓ 信号已写入 · 正在跳转到 AiQ愛<7...";
+        btn.disabled = true;
+
+        setTimeout(() => {
+          window.open("https://mellowwei.github.io/Ai-Q-10/#chat", "_blank");
+          btn.disabled = false;
+          statusEl.textContent = "✓ 已在新标签打开 AiQ愛<7 · 信号已注入";
+          setTimeout(() => { statusEl.textContent = ""; }, 4000);
+        }, 400);
+      } catch(e) {
+        statusEl.textContent = "⚠ localStorage写入失败 · 直接跳转中...";
+        window.open("https://mellowwei.github.io/Ai-Q-10/#chat", "_blank");
+      }
+    }
 
     // ===== LGS ANALYZER ENGINE =====
 
