@@ -1,25 +1,79 @@
-# AiQ愛<7 Answer Engine
+# AiQ愛<7 Answer Engine Patch
 
-Files:
-- `index.html` — based on your uploaded HTML, with AiQ愛<7 added as an answer engine.
-- `api/aiq7-answer.js` — optional Vercel backend for Gemini + DeepSeek deep answer.
-- `package.json` — minimal Vercel package metadata.
+This ZIP is a safe patch for the existing `QualiaRhythmMatrix` site.  
+Do not overwrite the entire site with a new index.html. Keep your restored original site and only insert the files/snippets here.
 
-## Frontend only
-Replace your current `index.html` with this `index.html`. The local answer engine works without backend.
+## Frontend / GitHub Pages
 
-## Deep answer backend
-Deploy to Vercel and set Environment Variables:
+Place these files in your `QualiaRhythmMatrix` repo:
+
+- `aiq7-answer.css`
+- `aiq7-answer.js`
+
+Then edit your existing `index.html`:
+
+### 1. Add CSS in `<head>`
+
+```html
+<link rel="stylesheet" href="aiq7-answer.css">
+```
+
+### 2. Add nav link after Hierarchy
+
+```html
+<a href="#hierarchy">Hierarchy</a>
+<a href="#aiq7-answer">AiQ愛&lt;7</a>
+<a href="#vibration">Vibration</a>
+```
+
+### 3. Insert section after Full Hierarchy
+
+Copy the content from:
 
 ```txt
-GEMINI_API_KEY=...
-GEMINI_MODEL=gemini-1.5-pro
-DEEPSEEK_API_KEY=...
+frontend/aiq7-section.html
+```
+
+and paste it immediately after:
+
+```html
+<section id="hierarchy">
+  ...
+</section>
+```
+
+### 4. Add JS before `</body>`
+
+```html
+<script src="aiq7-answer.js" defer></script>
+```
+
+### 5. Edit endpoint
+
+In `aiq7-answer.js`, replace:
+
+```js
+const AIQ7_ANSWER_ENDPOINT = "https://YOUR-VERCEL-PROJECT.vercel.app/api/aiq7-answer";
+```
+
+with your real Vercel backend URL.
+
+---
+
+## Backend / Vercel
+
+Create a Vercel project containing:
+
+- `api/aiq7-answer.js`
+- `package.json`
+
+Set Vercel Environment Variables:
+
+```txt
+GEMINI_API_KEY=your Gemini key
+GEMINI_MODEL=gemini-2.5-flash
+DEEPSEEK_API_KEY=your DeepSeek key
 DEEPSEEK_MODEL=deepseek-chat
 ```
 
-Then paste your deployed endpoint into the site:
-
-```txt
-https://your-project.vercel.app/api/aiq7-answer
-```
+The frontend user does not input any API key.
