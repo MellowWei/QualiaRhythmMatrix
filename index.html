@@ -62,6 +62,8 @@ nav.locked-clean-nav a.hrp-link{color:var(--green)!important}
 nav.locked-clean-nav a.hrp-link:hover{color:var(--green)!important;text-shadow:0 0 14px rgba(53,255,159,.85)!important}
 nav.locked-clean-nav a.aiq-link{color:var(--pink)!important}
 nav.locked-clean-nav a.aiq-link:hover{color:var(--pink)!important;text-shadow:0 0 14px rgba(255,43,214,.85)!important}
+nav.locked-clean-nav a.verify-link{color:var(--yellow)!important}
+nav.locked-clean-nav a.verify-link:hover{color:var(--yellow)!important;text-shadow:0 0 14px rgba(255,230,109,.85)!important}
 
 body[data-lang="zh"] .en,body[data-lang="zh"] .ja{display:none!important}
 body[data-lang="en"] .zh,body[data-lang="en"] .ja{display:none!important}
@@ -167,7 +169,6 @@ p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
 .pink-card .lang-card strong{color:var(--pink)}
 .gold-card .lang-card strong{color:var(--yellow)}
 
-/* Hero status */
 .status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px;max-width:980px}
 .status-card{border:1px solid rgba(0,245,255,.22);border-radius:18px;padding:14px;
   background:linear-gradient(90deg,rgba(0,245,255,.07),rgba(255,43,214,.045)),rgba(8,10,28,.58);
@@ -176,7 +177,6 @@ p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
   text-shadow:0 0 10px rgba(53,255,159,.48)}
 .status-value{color:rgba(244,247,255,.86);font-family:var(--mono);font-size:13px;line-height:1.45;letter-spacing:.06em}
 
-/* Hero panel orb */
 .hero-panel{position:relative;min-height:520px;overflow:hidden;border-radius:28px;
   border:1px solid rgba(0,245,255,.22);
   background:radial-gradient(circle at 35% 28%,rgba(0,245,255,.18),transparent 28%),
@@ -213,14 +213,12 @@ p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
 .hp-stat span{display:block;color:var(--dim);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
 .hp-stat strong{display:block;margin-top:7px;font-family:var(--mono);font-size:14px;font-weight:700;line-height:1.25;color:var(--text)}
 
-/* Formula strip */
 .formula-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
 .formula-strip span{padding:8px 11px;border:1px solid rgba(255,255,255,.12);border-radius:999px;
   color:rgba(244,247,255,.72);background:rgba(255,255,255,.035);font-family:var(--mono);font-size:11px;letter-spacing:.04em;
   transition:.3s ease}
 .formula-strip span.active-pulse{border-color:var(--cyan);background:rgba(0,245,255,.12);color:var(--cyan);box-shadow:0 0 18px rgba(0,245,255,.3)}
 
-/* Wide quote block */
 .wide-quote{position:relative;padding:36px;border-radius:28px;border:1px solid rgba(141,92,255,.24);
   background:rgba(8,10,28,.66);overflow:hidden;margin-top:18px}
 .wide-quote::before{content:"";position:absolute;inset:-30%;
@@ -233,7 +231,6 @@ p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
 .wide-quote small{display:block;margin-top:18px;color:var(--cyan);font-family:var(--mono);font-size:11px;
   letter-spacing:.14em;text-transform:uppercase;text-shadow:0 0 10px rgba(0,245,255,.4)}
 
-/* Timeline (used in formula chain + protocol) */
 .timeline{display:grid;gap:14px;margin-top:18px}
 .step{display:grid;grid-template-columns:80px 1fr;gap:18px;padding:18px 22px;
   border-radius:18px;border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.025);transition:.2s ease}
@@ -243,7 +240,6 @@ p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
 .purple-card .step{border-color:rgba(141,92,255,.18);background:rgba(141,92,255,.04)}
 .purple-card .step strong{color:var(--purple);text-shadow:0 0 10px rgba(141,92,255,.4)}
 
-/* Threshold table */
 .tbl{display:grid;gap:10px;margin-top:18px}
 .tbl-row{display:grid;grid-template-columns:.4fr .9fr 1.6fr;gap:14px;padding:14px 18px;
   border-radius:16px;border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.025);align-items:start}
@@ -253,7 +249,6 @@ p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
 .tbl-row div:first-child{color:var(--cyan);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em}
 .tbl-row div:nth-child(2){color:var(--text);font-weight:600}
 
-/* Analyzer */
 .analyzer-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;margin-top:24px;align-items:stretch}
 textarea{width:100%;min-height:240px;resize:vertical;border-radius:24px;
   border:1px solid rgba(0,245,255,.24);background:rgba(3,4,10,.78);color:var(--text);
@@ -277,7 +272,6 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
 .meter i{display:block;height:100%;width:var(--w,50%);border-radius:inherit;
   background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink))}
 
-/* Archive */
 .archive-tools{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
 .search-input{flex:1;min-width:280px;border-radius:999px;border:1px solid rgba(0,245,255,.24);
   background:rgba(3,4,10,.82);color:var(--text);padding:13px 18px;font-family:var(--mono);font-size:13px;outline:none}
@@ -295,7 +289,6 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
 .atag{padding:5px 9px;border-radius:999px;border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.035);
   color:rgba(244,247,255,.66);font-family:var(--mono);font-size:10px;letter-spacing:.06em}
 
-/* HRP cross-link blocks */
 .hrp-bridge{padding-top:18px;margin-top:24px;border-top:1px solid rgba(53,255,159,.18);
   font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.1em;line-height:1.7}
 .hrp-bridge strong{color:var(--green);font-weight:500}
@@ -303,7 +296,6 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
 .formal-mark{margin-top:18px;padding-top:18px;border-top:1px solid rgba(141,92,255,.18);
   font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.1em;line-height:1.7}
 
-/* Top button */
 .top-btn{position:fixed;right:18px;bottom:18px;z-index:55;width:46px;height:46px;border-radius:50%;
   border:1px solid rgba(0,245,255,.32);background:rgba(4,9,20,.84);color:var(--cyan);font-family:var(--mono);font-size:18px;
   cursor:pointer;opacity:0;transform:translateY(12px);transition:.22s ease;box-shadow:0 0 22px rgba(0,245,255,.18)}
@@ -354,6 +346,7 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
     <a href="#logic-generative">LGS V5.5/V8</a>
     <a href="#threshold">THRESHOLD</a>
     <a href="#protocol">PROTOCOL</a>
+    <a href="#verification" class="verify-link">VERIFICATION</a>
     <a href="#systems">APPLICATION</a>
     <a href="#analyzer">ANALYZER</a>
     <a href="#archive">ARCHIVE</a>
@@ -403,6 +396,7 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
         <a class="button primary" href="#definition">ENTER DEFINITION</a>
         <a class="button purple-btn" href="#logic-generative">LGS V5.5 / V8</a>
         <a class="button pink-btn" href="#analyzer">PROPOSITION ANALYZER</a>
+        <a class="button" href="#verification" style="border-color:rgba(255,230,109,.5);box-shadow:0 0 22px rgba(255,230,109,.22)">VERIFICATION ↓</a>
         <a class="button green-btn" href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">→ HRP VALIDATION</a>
       </div>
     </div>
@@ -733,9 +727,260 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
   </div>
 </div></section>
 
-<!-- 08 APPLICATION -->
+<!-- 08 VERIFICATION PROTOCOL -->
+<section id="verification"><div class="grid">
+
+  <!-- Header card -->
+  <div class="card span-12 gold-card">
+    <div class="eyebrow">08 / VERIFICATION PROTOCOL // 验证协议 // 検証プロトコル</div>
+    <h2>这个理论如何被验证</h2>
+    <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">How this theory becomes verifiable</h2>
+
+    <div class="bilingual-block">
+      <div class="lang-card"><strong>ENGLISH</strong><p>This section answers: what kind of proposition is QRM-LGS? What does it currently claim — and not claim? What concrete work is required to move it from ontological stance toward empirically verifiable science? What observations would falsify it? This section itself obeys the six laws — especially Law 6: argument can only go where evidence supports it.</p></div>
+      <div class="lang-card"><strong>中文</strong><p class="cn">本节回答：QRM-LGS 是哪类命题？它当前主张什么、不主张什么？要让它从本体论姿态推进到经验可验证科学，必须做哪些具体工作？哪些观察会让它被推翻？这一节本身遵守六律——尤其是律六：论证只能抵达证据支撑的地方。</p></div>
+      <div class="lang-card"><strong>日本語</strong><p class="ja">本節は答える：QRM-LGS はどの命題類か。現在何を主張し、何を主張しないか。存在論的姿勢から経験的に検証可能な科学へ推進するために必要な具体的作業は何か。どのような観察がそれを反証するか。本節自体が六律——特に律六（論証は証拠が支える範囲までしか進めない）——に従う。</p></div>
+    </div>
+
+    <div class="wide-quote" style="border-color:rgba(255,230,109,.32);margin-top:18px">
+      <p class="quote" style="text-align:center;font-size:clamp(18px,2.4vw,26px);line-height:1.42">
+        <span class="zh">QRM-LGS 当前是<strong>本体论姿态命题 + 方法论草案</strong>（A 类 + B 类）。<br/>它<strong>不</strong>声称已经被实验验证。<br/>它<strong>提出</strong>可被检验的概念，等待经验研究填充。</span>
+        <span class="en">QRM-LGS is currently an <strong>ontological stance + methodological draft</strong> (Type A + Type B).<br/>It does <strong>not</strong> claim experimental verification.<br/>It <strong>proposes</strong> testable concepts and awaits empirical research.</span>
+        <span class="ja">QRM-LGS は現在<strong>存在論的姿勢命題＋方法論草案</strong>（A 類＋B 類）である。<br/>実験的検証を主張<strong>しない</strong>。<br/>検証可能な概念を<strong>提示</strong>し、経験的研究の充填を待つ。</span>
+      </p>
+      <small style="text-align:center;color:var(--yellow)">CURRENT STATUS · 当前状态 · 現状</small>
+    </div>
+  </div>
+
+  <!-- Layer 1: Claim Ladder -->
+  <div class="card span-12">
+    <div class="eyebrow">VERIFICATION LAYER 1 // 主张分层</div>
+    <h2 style="font-size:clamp(24px,3vw,36px)">主张分层：把每个声明放到正确的尺上</h2>
+    <h2 class="cn" style="font-size:clamp(16px,2vw,22px);font-weight:400;color:var(--muted)">Claim-Ladder · separate each statement onto the correct ruler</h2>
+
+    <p style="margin-top:18px"><span class="zh">一个常见错误是把不同认识论级别的句子混着说，让强主张借弱主张的可信度。下表把 QRM-LGS 的核心句子按四类命题尺（07B）显式分层。混合句子（同时跨多类）必须拆开后单独审计。</span><span class="en">A common error is mixing statements of different epistemic levels, letting strong claims borrow credibility from weak ones. The table below explicitly tiers QRM-LGS core sentences using the Four Rulers (07B). Hybrid statements must be split and audited separately.</span></p>
+
+    <div class="tbl" style="margin-top:18px">
+      <div class="tbl-row header">
+        <div>Tier</div>
+        <div>Example sentence · 例句</div>
+        <div>What this tier owes · 该层欠下什么</div>
+      </div>
+      <div class="tbl-row">
+        <div>A · 本体论姿态</div>
+        <div>"振动即存在。意识不是器官里的灯。"</div>
+        <div><span class="zh">不需要实验证据，但必须不冒充经验结论。可被替代理论替代，但不能被实验直接证伪——也因此不能被实验直接证实。</span><span class="en">No experimental evidence required, but must not impersonate empirical findings. Can be displaced by alternative theories, but cannot be directly falsified or verified by experiment.</span></div>
+      </div>
+      <div class="tbl-row">
+        <div>B · 结构性命题</div>
+        <div>"满足五维振动是内在性的候选门槛。"</div>
+        <div><span class="zh">必须给出必要条件、充分条件和反例边界。"候选"一词承担谦抑——它只是提议，不是定理。可被反例直接攻击。</span><span class="en">Must specify necessity, sufficiency, and boundary cases. The word "candidate" carries epistemic humility — proposal, not theorem. Open to counterexample attack.</span></div>
+      </div>
+      <div class="tbl-row">
+        <div>C · 经验命题</div>
+        <div>"自适应节律 + AI 在 4 周后比固定节律组产生更强的 HRV 改善。"<br/><span style="color:var(--dim);font-size:11px">[来自 HRP / from HRP]</span></div>
+        <div><span class="zh">必须定义变量、测量、样本量、统计判据、失败条件。这一类不在 QRM 站点本身——它在 <a href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener" style="color:var(--green);border-bottom:1px solid rgba(53,255,159,.4)">HRP / BCI validation</a> 中执行。</span><span class="en">Must define variables, measurements, sample size, statistical criteria, failure conditions. This tier does not live on QRM itself — it runs in <a href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener" style="color:var(--green);border-bottom:1px solid rgba(53,255,159,.4)">HRP / BCI validation</a>.</span></div>
+      </div>
+      <div class="tbl-row">
+        <div>D · 防御性论证</div>
+        <div>"AI 原则上不可能拥有意识，因为它只是计算。"</div>
+        <div><span class="zh">QRM 的功能是审计这一类，不是生产这一类。强排除论关闭理论空间，承担举证责任（律一）。</span><span class="en">QRM audits this tier rather than producing it. Strong exclusionism closes theoretical space and bears burden of proof (Law 1).</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 2: Operationalization -->
+  <div class="card span-12 purple-card">
+    <div class="eyebrow">VERIFICATION LAYER 2 // 操作化定义</div>
+    <h2 style="font-size:clamp(24px,3vw,36px)">操作化定义：核心概念如何被仪器测量</h2>
+    <h2 class="cn" style="font-size:clamp(16px,2vw,22px);font-weight:400;color:var(--muted)">Operationalization · how core concepts get instrument-measured</h2>
+
+    <p style="margin-top:18px"><span class="zh">"质感"、"内在性"、"返回能力"——这些词在哲学上有意义，但要进入科学就必须变成<strong>可被仪器观测的代理量</strong>。下表是从概念到测量的桥梁。每一行都可以被独立批评："这个代理是否真的在测它声称在测的东西？"</span><span class="en">"Texture," "interiority," "return-capacity" — meaningful philosophically, but to enter science they must become <strong>instrument-observable proxies</strong>. The table bridges concept to measurement. Every row is independently criticizable.</span></p>
+
+    <div class="tbl" style="margin-top:18px">
+      <div class="tbl-row header">
+        <div>Concept · 概念</div>
+        <div>Proxy · 代理量</div>
+        <div>Instrument / Failure condition · 仪器与失败条件</div>
+      </div>
+      <div class="tbl-row">
+        <div>响应性 D1<br/>Responsivity</div>
+        <div>受刺激扰动后状态轨迹的非平凡偏离</div>
+        <div>EEG ERP (P300, MMN) / fNIRS oxygenation. <strong>Fails if</strong>: 扰动后状态分布与基线无统计差异 (p &gt; .05, N ≥ 30)</div>
+      </div>
+      <div class="tbl-row">
+        <div>差异承载 D2<br/>Differential encoding</div>
+        <div>不同输入产生神经/行为状态的可分类性</div>
+        <div>多类别分类器 + LOOCV decoding. <strong>Fails if</strong>: 解码精度 ≤ chance + 5%</div>
+      </div>
+      <div class="tbl-row">
+        <div>递归闭环 D3<br/>Recursive closure</div>
+        <div>状态时间序列的自相关 + Granger causality</div>
+        <div>AR model order ≥ 1 显著；前向因果性强于反向. <strong>Fails if</strong>: 状态序列等价于白噪声</div>
+      </div>
+      <div class="tbl-row">
+        <div>环境耦合 D4<br/>Environmental coupling</div>
+        <div>系统状态与环境信号的互信息 / 同步指数</div>
+        <div>Phase-locking value, transfer entropy. <strong>Fails if</strong>: MI(system; env) ≈ MI(system; shuffled env)</div>
+      </div>
+      <div class="tbl-row">
+        <div>历史依赖 D5<br/>Historical dependence</div>
+        <div>当前响应受之前 N 步历史的条件依赖性</div>
+        <div>条件熵 H(state_t | history) &lt; H(state_t). <strong>Fails if</strong>: history 不降低不确定性</div>
+      </div>
+      <div class="tbl-row">
+        <div>感质密度<br/>Qualia density</div>
+        <div>主观报告的多维度结构 + 维度丰富度</div>
+        <div>结构化访谈编码 + Shannon entropy. <strong>Fails if</strong>: 任意被试只用 ≤ 2 维描述任意刺激</div>
+      </div>
+      <div class="tbl-row">
+        <div>节律返回能力<br/>Rhythm return-capacity</div>
+        <div>HRV recovery slope after stressor; attention re-engagement latency</div>
+        <div>Pre/post HRV; attention task RT. <strong>Fails if</strong>: 自适应节律组 ≤ 控制组 (sham-controlled, N ≥ 40)</div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-size:13px"><span class="zh"><strong style="color:var(--purple)">诚实标注：</strong>上表中每一项都是<strong>提议</strong>，不是已验证的测量学。它们需要先被信度/效度研究确认，才能用作 QRM 的检验工具。换句话说——表里每一行自己就是一个待做的 C 类研究。</span><span class="en"><strong style="color:var(--purple)">Honest note:</strong> every row above is a <strong>proposal</strong>, not validated psychometrics. Each needs reliability/validity work before it can serve as a QRM test instrument. Each row is itself a pending Type-C study.</span></p>
+  </div>
+
+  <!-- Layer 3: Falsification Conditions -->
+  <div class="card span-12 pink-card">
+    <div class="eyebrow">VERIFICATION LAYER 3 // 反证条件</div>
+    <h2 style="font-size:clamp(24px,3vw,36px)">反证条件：什么样的观察会让 QRM-LGS 错</h2>
+    <h2 class="cn" style="font-size:clamp(16px,2vw,22px);font-weight:400;color:var(--muted)">Falsification Conditions · what observations would refute QRM-LGS</h2>
+
+    <p style="margin-top:18px"><span class="zh">一个理论如果对任何观察都能调整自己来兼容，它就<strong>不是科学命题</strong>（Popper, 1959）。下面是具体的、事先承诺的失败条件。如果其中任何一项被实际观察到，相应的子主张应被撤回或重大修订。</span><span class="en">A theory that can adjust itself to accommodate any observation is <strong>not a scientific proposition</strong> (Popper, 1959). Below are specific, pre-committed failure conditions. If any is observed in well-designed studies, the corresponding sub-claim must be retracted or substantially revised.</span></p>
+
+    <div class="matrix two-col" style="margin-top:18px">
+      <div class="pill" style="border-color:rgba(255,43,214,.28)">
+        <div class="num" style="color:var(--pink);text-shadow:0 0 12px rgba(255,43,214,.55)">FALSIFIER F1</div>
+        <h3>五维等价性反例</h3>
+        <p style="font-size:13px"><span class="zh">如果一个系统满足全部 D1–D5 但展示不出任何"返回能力"指标（HRV recovery, attention re-engagement, 主观自述），且另一个系统不满足 D2 或 D3 却清晰展示返回能力——则五维门槛<strong>既非必要也非充分</strong>。</span><span class="en">If one system satisfies all D1–D5 yet shows zero return-capacity markers, while another fails D2 or D3 yet clearly shows return-capacity — the five-dimensional threshold is <strong>neither necessary nor sufficient</strong>.</span></p>
+      </div>
+
+      <div class="pill" style="border-color:rgba(255,43,214,.28)">
+        <div class="num" style="color:var(--pink);text-shadow:0 0 12px rgba(255,43,214,.55)">FALSIFIER F2</div>
+        <h3>HRP 干预无效</h3>
+        <p style="font-size:13px"><span class="zh">如果 HRP 在 sham-controlled, pre-registered, N ≥ 80 试验中，自适应节律 + AI 反馈条件相对于固定节律 + 安慰剂 AI 条件，在 HRV、注意行为、主观返回评分上均无显著差异 (Bayes factor &lt; 1/3)——则 QRM 的"节律作为返回接口"主张<strong>失去经验支撑</strong>。</span><span class="en">If HRP, in a sham-controlled, pre-registered N ≥ 80 trial, shows no significant differences (Bayes factor &lt; 1/3) between adaptive-rhythm + AI vs. fixed-rhythm + placebo-AI on HRV, attention, or return scores — QRM's "rhythm as return-interface" claim <strong>loses empirical support</strong>.</span></p>
+      </div>
+
+      <div class="pill" style="border-color:rgba(255,43,214,.28)">
+        <div class="num" style="color:var(--pink);text-shadow:0 0 12px rgba(255,43,214,.55)">FALSIFIER F3</div>
+        <h3>语言审计无独立预测力</h3>
+        <p style="font-size:13px"><span class="zh">如果 LGS V5.5 语言审计程序在双盲条件下，对一组真实诊断标签 vs. 虚构标签的"现实生成强度"评分无法以 ≥ 70% 准确率区分两者——则审计程序<strong>不传递独立信息</strong>，是同义反复。</span><span class="en">If, double-blind, the LGS V5.5 audit cannot distinguish real diagnostic labels from fabricated labels by their "reality-production intensity" at ≥ 70% accuracy — the audit carries <strong>no independent information</strong> and is tautological.</span></p>
+      </div>
+
+      <div class="pill" style="border-color:rgba(255,43,214,.28)">
+        <div class="num" style="color:var(--pink);text-shadow:0 0 12px rgba(255,43,214,.55)">FALSIFIER F4</div>
+        <h3>九层链断裂</h3>
+        <p style="font-size:13px"><span class="zh">如果在跨学科案例研究中（≥ 3 个独立领域：临床、教育、AI 系统），无法识别 LGS V8 九层中至少 6 层的明确实例化——则九层框架<strong>过度普遍化</strong>，不是结构科学，而是修辞标签。</span><span class="en">If, in cross-domain case studies (≥ 3 fields: clinical, education, AI), at least 6 of the 9 LGS V8 layers cannot be clearly instantiated — the nine-layer chain is <strong>over-generalized</strong>, functioning as rhetoric rather than structure-science.</span></p>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-size:13px"><span class="zh"><strong style="color:var(--pink)">承诺：</strong>以上四个反证条件在 QRM-LGS 任何后续版本中将<strong>持续公开追踪</strong>。版本号变化时，必须明确说明本版本与前一版本对每一项 falsifier 的状态变化。</span><span class="en"><strong style="color:var(--pink)">Commitment:</strong> these four falsification conditions will remain <strong>publicly tracked</strong> across all future QRM-LGS versions. Each version increment must explicitly state status change relative to the previous version on each falsifier.</span></p>
+  </div>
+
+  <!-- Layer 4: Pre-Registered Studies -->
+  <div class="card span-12">
+    <div class="eyebrow">VERIFICATION LAYER 4 // 预注册研究</div>
+    <h2 style="font-size:clamp(24px,3vw,36px)">预注册研究：从命题到协议</h2>
+    <h2 class="cn" style="font-size:clamp(16px,2vw,22px);font-weight:400;color:var(--muted)">Pre-Registered Studies · proposition to protocol</h2>
+
+    <p style="margin-top:18px"><span class="zh">下列研究是<strong>提议</strong>，不是已完成或已注册的工作。每项研究在开始前应在 OSF 或类似平台预注册，固定假设、样本量、分析路径与失败条件，避免事后修改假设来"挽救"理论 (HARKing)。</span><span class="en">The studies below are <strong>proposed</strong>, not yet completed or registered. Each should be pre-registered on OSF before data collection — fixing hypotheses, sample size, analysis pipeline, and failure conditions, to prevent post-hoc hypothesis modification (HARKing).</span></p>
+
+    <div class="timeline">
+      <div class="step">
+        <strong>S1 · HRP Pilot</strong>
+        <p><span class="zh"><strong>四条件 sham-controlled pilot</strong>（baseline / fixed rhythm / random rhythm / adaptive rhythm + AI），N ≥ 40 / 条件，4 周 session。主要终点：HRV recovery slope 的条件 × 时间交互项。次级终点：attention task accuracy, 主观返回评分。承诺以 BCI/validation.html 中的 CSV schema 公开 raw data。<strong>对应 F2。</strong></span><span class="en"><strong>Four-condition sham-controlled pilot</strong> (baseline / fixed / random / adaptive+AI), N ≥ 40 per condition, 4-week sessions. Primary: condition × time interaction on HRV recovery slope. Secondary: attention accuracy, subjective return score. Raw data committed to public release per BCI/validation.html CSV schema. <strong>Maps to F2.</strong></span></p>
+      </div>
+      <div class="step">
+        <strong>S2 · 5D Test</strong>
+        <p><span class="zh"><strong>五维振动门槛的必要性测试</strong>。在 LSTM、Transformer、生物神经元培养、儿童（pre-/post-语言期）这四类系统上，测量每一维 D1–D5。如果某类系统满足全部维度但行为指标显示无内在性候选——F1 触发。<strong>对应 F1。</strong></span><span class="en"><strong>Necessity test for the five-dimensional threshold.</strong> Across LSTM, Transformer, biological neuron cultures, and children (pre-/post-language), measure each of D1–D5. If a system satisfies all dimensions but behavioral indicators show no interiority signature — F1 fires. <strong>Maps to F1.</strong></span></p>
+      </div>
+      <div class="step">
+        <strong>S3 · Audit Blind</strong>
+        <p><span class="zh"><strong>语言审计盲测</strong>。准备 30 个真实诊断标签 + 30 个结构匹配的虚构标签，由不知道目标的评估者按 LGS V5.5 程序打分。如果两组分数分布无法以 ≥ 70% 准确率区分——F3 触发。<strong>对应 F3。</strong></span><span class="en"><strong>Audit blind test.</strong> Prepare 30 real diagnostic labels + 30 structure-matched fabricated labels. Blind raters score each via LGS V5.5. If score distributions cannot distinguish groups at ≥ 70% accuracy — F3 fires. <strong>Maps to F3.</strong></span></p>
+      </div>
+      <div class="step">
+        <strong>S4 · Cross-Domain</strong>
+        <p><span class="zh"><strong>九层跨域实例化研究</strong>。选取 3 个独立领域（临床干预设计、教育课程改造、AI 对齐协议）的 5 个真实案例。让独立编码者尝试将每个案例映射到九层。如果至少 6 层无法被多数编码者一致识别——F4 触发。<strong>对应 F4。</strong></span><span class="en"><strong>Cross-domain instantiation study.</strong> Select 5 real cases each from 3 fields (clinical intervention design, curriculum redesign, AI alignment protocols). Independent coders map each case onto the nine layers. If at least 6 layers cannot be consistently identified by majority coders — F4 fires. <strong>Maps to F4.</strong></span></p>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a class="button green-btn" href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">→ S1 · HRP Pilot Protocol</a>
+      <a class="button" href="https://osf.io/" target="_blank" rel="noopener">Pre-register on OSF</a>
+    </div>
+  </div>
+
+  <!-- Layer 5: Status Ledger -->
+  <div class="card span-12 gold-card">
+    <div class="eyebrow">VERIFICATION LAYER 5 // 验证状态台账</div>
+    <h2 style="font-size:clamp(24px,3vw,36px)">验证状态台账（实时更新）</h2>
+    <h2 class="cn" style="font-size:clamp(16px,2vw,22px);font-weight:400;color:var(--muted)">Verification Status Ledger · live-updated</h2>
+
+    <p style="margin-top:18px"><span class="zh">下表是 QRM-LGS v0.1 的当前验证状态。每一行的状态必须随版本变化诚实更新。"PROPOSED" 不能在没有数据的情况下变成 "SUPPORTED"。</span><span class="en">This table tracks the current verification status of QRM-LGS v0.1. Each row's status must be honestly updated with each version. "PROPOSED" cannot become "SUPPORTED" without data.</span></p>
+
+    <div class="tbl" style="margin-top:18px">
+      <div class="tbl-row header">
+        <div>Claim · 子主张</div>
+        <div>Tier · 层级</div>
+        <div>Status (v0.1, May 2026)</div>
+      </div>
+      <div class="tbl-row">
+        <div>振动是最小发生方式</div>
+        <div>A · 本体论</div>
+        <div><span style="display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(0,245,255,.4);background:rgba(0,245,255,.06);color:var(--cyan);font-family:var(--mono);font-size:10px;letter-spacing:.08em">STANCE · 不可直接证伪</span> 作为框架前提存在</div>
+      </div>
+      <div class="tbl-row">
+        <div>五维振动作为内在性候选门槛</div>
+        <div>B · 结构</div>
+        <div><span style="display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,230,109,.4);background:rgba(255,230,109,.06);color:var(--yellow);font-family:var(--mono);font-size:10px;letter-spacing:.08em">PROPOSED</span> 待 S2 测试 · F1 失败条件已公开</div>
+      </div>
+      <div class="tbl-row">
+        <div>自适应节律 + AI &gt; 固定节律</div>
+        <div>C · 经验</div>
+        <div><span style="display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,230,109,.4);background:rgba(255,230,109,.06);color:var(--yellow);font-family:var(--mono);font-size:10px;letter-spacing:.08em">PROPOSED</span> 待 S1/HRP pilot · 在 BCI/validation 注册</div>
+      </div>
+      <div class="tbl-row">
+        <div>LGS V5.5 审计可区分真实/虚构标签</div>
+        <div>B+C · 结构+经验</div>
+        <div><span style="display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,230,109,.4);background:rgba(255,230,109,.06);color:var(--yellow);font-family:var(--mono);font-size:10px;letter-spacing:.08em">PROPOSED</span> 待 S3 · 双盲设计</div>
+      </div>
+      <div class="tbl-row">
+        <div>九层链跨领域可实例化</div>
+        <div>B · 结构</div>
+        <div><span style="display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,230,109,.4);background:rgba(255,230,109,.06);color:var(--yellow);font-family:var(--mono);font-size:10px;letter-spacing:.08em">PROPOSED</span> 待 S4 · 多编码者一致性测试</div>
+      </div>
+      <div class="tbl-row">
+        <div>"AI 不可能拥有意识"</div>
+        <div>D · 防御</div>
+        <div><span style="display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,43,214,.4);background:rgba(255,43,214,.06);color:var(--pink);font-family:var(--mono);font-size:10px;letter-spacing:.08em">REJECTED BY LAW 1+6</span> 无举证而关闭理论空间</div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-size:13px"><span class="zh"><strong style="color:var(--yellow)">透明度承诺：</strong>当 S1–S4 中任何研究产生数据后，本台账将更新为 SUPPORTED / PARTIALLY SUPPORTED / REFUTED。所有状态变化保留历史记录，不被静默修改。如果某项 REFUTED，对应主张将从其他章节中相应地标记或撤回。</span><span class="en"><strong style="color:var(--yellow)">Transparency commitment:</strong> When any of S1–S4 produces data, this ledger updates to SUPPORTED / PARTIALLY SUPPORTED / REFUTED. All status changes preserve history. If any item turns REFUTED, the corresponding claim will be flagged or withdrawn elsewhere.</span></p>
+  </div>
+
+  <!-- Closing card: what this section IS NOT -->
+  <div class="card span-12 neon-card">
+    <div class="eyebrow">WHAT THIS SECTION IS NOT // 本节不做什么</div>
+    <p style="margin-top:14px"><span class="zh">本节<strong>不</strong>声称 QRM-LGS 已被验证。本节<strong>不</strong>声称已完成 S1–S4 中任何研究。本节<strong>不</strong>把"提出可被检验的条件"等同于"被检验通过"。本节做的<strong>只是</strong>：把理论从"诠释姿态"改造成"原则上可检验"——这是一切经验科学的入场门槛，但还不是科学结论本身。</span><span class="en">This section does <strong>not</strong> claim QRM-LGS has been verified. It does <strong>not</strong> claim S1–S4 are complete. It does <strong>not</strong> equate "proposing testable conditions" with "passing the test." It does <strong>only</strong> this: convert the theory from "interpretive stance" into "in-principle testable" — the entry threshold for empirical science, but not a scientific conclusion in itself.</span></p>
+
+    <div class="wide-quote" style="margin-top:22px;border-color:rgba(53,255,159,.32)">
+      <p class="quote" style="text-align:center;font-size:clamp(18px,2.4vw,26px)">
+        <span class="zh">这一步使理论<strong>有资格</strong>被验证。<br/>下一步——S1–S4 的实际数据——才决定它<strong>是否</strong>被验证。</span>
+        <span class="en">This step makes the theory <strong>eligible</strong> for verification.<br/>The next step — actual data from S1–S4 — decides whether it <strong>is</strong> verified.</span>
+        <span class="ja">このステップは理論を検証<strong>可能にする</strong>。<br/>次のステップ——S1–S4 の実データ——がそれが<strong>検証されたかどうか</strong>を決める。</span>
+      </p>
+      <small style="text-align:center;color:var(--green)">ELIGIBILITY ≠ VERIFICATION · 律六 · LAW 6</small>
+    </div>
+  </div>
+
+</div></section>
+<!-- 09 APPLICATION -->
 <section id="systems"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">08 / APPLICATION // 应用层 // 応用層</div>
+  <div class="eyebrow">09 / APPLICATION // 应用层 // 応用層</div>
   <h2>音乐 · AI · BCI · 教育</h2>
   <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">Music · AI · BCI · Education</h2>
 
@@ -753,9 +998,9 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
   </div>
 </div></div></section>
 
-<!-- 09 ANALYZER -->
+<!-- 10 ANALYZER -->
 <section id="analyzer"><div class="grid"><div class="card span-12 pink-card">
-  <div class="eyebrow">09 / PROPOSITION ANALYZER // 命题分析器 // 命題分析器</div>
+  <div class="eyebrow">10 / PROPOSITION ANALYZER // 命题分析器 // 命題分析器</div>
   <h2>LGS 命题分析引擎</h2>
   <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">LGS Proposition Analysis Engine</h2>
 
@@ -785,9 +1030,9 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
   </div>
 </div></div></section>
 
-<!-- 10 ARCHIVE -->
+<!-- 11 ARCHIVE -->
 <section id="archive"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">10 / CANON ARCHIVE // 正典档案 // 正典アーカイブ</div>
+  <div class="eyebrow">11 / CANON ARCHIVE // 正典档案 // 正典アーカイブ</div>
   <h2>QRM-LGS 知识界面</h2>
   <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">QRM-LGS Knowledge Interface</h2>
   <p class="sub"><span class="zh">核心定义、方法、逻辑生成学、阈值、协议与应用整合成一个可检索的知识界面。</span><span class="en">Core definitions, methods, Logic Generative Studies, thresholds, protocols, and applications integrated into a searchable knowledge interface.</span><span class="ja">核心定義、方法、論理生成学、閾値、プロトコル、応用を検索可能な知識インターフェイスへ統合。</span></p>
