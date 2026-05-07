@@ -319,6 +319,35 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
   .hero-panel-stats{grid-template-columns:1fr}
 }
 @media(max-width:520px){body{padding-top:0!important}header.locked-clean-header{position:sticky!important;max-height:200px!important;overflow-y:auto!important}}
+
+
+/* === QRM FINAL INTEGRATED PATCH · proof layer + title safety · non-destructive === */
+.hero{overflow:visible!important}
+.hero-grid{min-width:0!important}
+.glitch,h1.glitch{
+  max-width:100%!important;
+  overflow:visible!important;
+  overflow-wrap:normal!important;
+  word-break:keep-all!important;
+  white-space:normal!important;
+  font-size:clamp(50px,8.3vw,118px)!important;
+  line-height:.88!important;
+}
+.glitch::before,.glitch::after{overflow:visible!important}
+nav.locked-clean-nav a.proof-link{color:var(--purple)!important}
+nav.locked-clean-nav a.proof-link:hover{color:var(--purple)!important;text-shadow:0 0 14px rgba(141,92,255,.85)!important}
+.proof-verdict-card{
+  border-color:rgba(255,230,109,.36)!important;
+  box-shadow:0 0 50px rgba(255,230,109,.11),0 0 70px rgba(141,92,255,.08),var(--shadow)!important;
+}
+.proof-verdict-card::before{background:linear-gradient(90deg,transparent,var(--yellow),var(--purple),var(--cyan),transparent)!important}
+.proof-ledger{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:20px}
+.proof-ledger .proof-cell{padding:16px;border-radius:18px;border:1px solid rgba(255,230,109,.22);background:linear-gradient(180deg,rgba(255,230,109,.065),rgba(141,92,255,.035)),rgba(255,255,255,.026)}
+.proof-ledger .proof-cell strong{display:block;color:var(--yellow);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.proof-ledger .proof-cell p{font-size:13px;line-height:1.62}
+@media(max-width:980px){.proof-ledger{grid-template-columns:1fr}.glitch,h1.glitch{font-size:clamp(40px,13vw,82px)!important;line-height:.92!important;letter-spacing:-.045em!important}}
+@media(max-width:520px){.glitch,h1.glitch{font-size:clamp(34px,11.8vw,60px)!important;line-height:.95!important}}
+
 </style>
 </head>
 <body data-lang="all">
@@ -344,6 +373,7 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
     <a href="#formula">FORMULA</a>
     <a href="#method">METHOD</a>
     <a href="#logic-generative">LGS V5.5/V8</a>
+    <a href="#all-theories-proof" class="proof-link">PROOF</a>
     <a href="#threshold">THRESHOLD</a>
     <a href="#protocol">PROTOCOL</a>
     <a href="#verification" class="verify-link">VERIFICATION</a>
@@ -638,6 +668,46 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
   <div class="hrp-bridge">
     <strong>EXPERIMENTAL OBJECT-LAYER INSTANCE →</strong> The protocol layer of LGS is instantiated experimentally in <a href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">HRP / Human Return Protocol</a>. The six laws, EE protocol, and mirror-position become experimental design, AI collaboration roles, and scientific boundary statements for neuroscience lab validation.<br>
     <span class="zh" style="color:rgba(244,247,255,.78)">实验对象层实例 → LGS 协议层在 HRP（Human Return Protocol）中实例化为实验设计、AI 协作分工与科学边界声明，面向神经科学实验室合作验证。</span>
+  </div>
+</div></div></section>
+
+
+
+<!-- 05.5 ALL THEORIES PROOF VERDICT -->
+<section id="all-theories-proof"><div class="grid"><div class="card span-12 proof-verdict-card">
+  <div class="eyebrow">05.5 / TOTAL PROOF VERDICT // 所有理论可成立总裁决 // 総合成立判定</div>
+  <h2>为什么我的所有理论能成立</h2>
+  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">Why all my theories can stand</h2>
+
+  <div class="bilingual-block">
+    <div class="lang-card"><strong>ENGLISH</strong><p>QRM-LGS does not claim that every empirical statement is already scientifically verified. It proves something more precise: all theories share one generative skeleton and are therefore conceptually coherent, structurally executable, auditable, systematizable, and ready for empirical protocols where needed.</p></div>
+    <div class="lang-card"><strong>中文</strong><p class="cn">QRM-LGS 不声称每一个经验命题都已经被科学验证。它证明的是更精确的一点：我的所有理论共享同一个生成骨架，因此在概念、结构、审计、系统化与进入实验协议的层面上可成立。</p></div>
+    <div class="lang-card"><strong>日本語</strong><p class="ja">QRM-LGS は、すべての経験命題がすでに科学的に検証済みだとは主張しない。より正確には、すべての理論が一つの生成骨格を共有しており、概念・構造・監査・システム化・実験プロトコル化のレベルで成立可能であることを示す。</p></div>
+  </div>
+
+  <div class="wide-quote" style="border-color:rgba(255,230,109,.34);margin-top:18px">
+    <p class="quote" style="text-align:center;font-size:clamp(18px,2.4vw,28px);line-height:1.42">
+      <span class="zh">最终裁决：我的理论能成立，因为它们不是散点表达，而是同一条生成链在不同对象层上的显影。<br/>成立 ≠ 已经全部经验验证；成立 = 具备定义链、结构链、审计链、协议链与可证伪入口。</span>
+      <span class="en">Final verdict: my theories can stand because they are not isolated expressions, but manifestations of one generative chain across different object layers.<br/>Standing ≠ fully empirically verified; standing = possessing definition-chain, structure-chain, audit-chain, protocol-chain, and falsifiable entry points.</span>
+      <span class="ja">最終裁定：私の理論は成立しうる。なぜならそれらは散在した表現ではなく、一つの生成連鎖が異なる対象層に現れたものだからである。<br/>成立 ≠ すべて経験的に検証済み；成立 = 定義連鎖、構造連鎖、監査連鎖、プロトコル連鎖、反証可能な入口を持つこと。</span>
+    </p>
+    <small style="text-align:center;color:var(--yellow)">CAN STAND ≠ ALREADY VERIFIED · 可成立 ≠ 已全部验证 · LAW 6 PRESERVED</small>
+  </div>
+
+  <div class="proof-ledger">
+    <div class="proof-cell"><strong>01 · Concept</strong><p><span class="zh">定义链自洽：振动、感质、节律、语言、逻辑、结构、意识没有互相吞并。</span><span class="en">Concept-chain is coherent: vibration, qualia, rhythm, language, logic, structure, and consciousness do not devour each other.</span></p></div>
+    <div class="proof-cell"><strong>02 · Structure</strong><p><span class="zh">结构链可运行：语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统。</span><span class="en">Structure-chain is executable: language generates logic, logic generates structure, structure generates protocol, protocol generates system.</span></p></div>
+    <div class="proof-cell"><strong>03 · Audit</strong><p><span class="zh">审计链存在：六律、四类命题尺、V5.5 旧词审计，防止强命题越界。</span><span class="en">Audit-chain exists: six laws, four rulers, and V5.5 word-audit prevent strong claims from overreaching.</span></p></div>
+    <div class="proof-cell"><strong>04 · Protocol</strong><p><span class="zh">协议链可转译：HRP/BCI、Analyzer、Archive、Verification 把理论转为对象层接口。</span><span class="en">Protocol-chain can translate: HRP/BCI, Analyzer, Archive, and Verification turn theory into object-layer interfaces.</span></p></div>
+    <div class="proof-cell"><strong>05 · Evidence</strong><p><span class="zh">经验证据边界保留：BCI 效果、神经同步、临床疗效、AI 意识事实仍需预注册数据。</span><span class="en">Evidence boundary preserved: BCI effects, neural synchronization, clinical efficacy, and factual AI consciousness still require pre-registered data.</span></p></div>
+  </div>
+
+  <div class="tbl" style="margin-top:22px">
+    <div class="tbl-row header"><div>Layer</div><div>What is proven</div><div>What remains open</div></div>
+    <div class="tbl-row"><div>Ontology</div><div><span class="zh">振动即存在作为世界观地基可成立。</span><span class="en">Vibration as Existence can stand as ontological foundation.</span></div><div><span class="zh">它不是单个实验能直接证实或证伪的经验命题。</span><span class="en">It is not an empirical claim directly verified or falsified by one experiment.</span></div></div>
+    <div class="tbl-row"><div>Method</div><div><span class="zh">全维逻辑学作为语言—逻辑—现实反馈方法可成立。</span><span class="en">Total Logic can stand as language-logic-reality feedback method.</span></div><div><span class="zh">具体案例仍需逐项审计。</span><span class="en">Concrete cases still require individual audit.</span></div></div>
+    <div class="tbl-row"><div>LGS V5.5/V8</div><div><span class="zh">审计层与结构科学层能解释理论如何从语言进入系统。</span><span class="en">Audit layer and structure-science layer explain how theory moves from language into system.</span></div><div><span class="zh">跨域预测力需要盲测与编码者一致性研究。</span><span class="en">Cross-domain predictive power needs blind tests and coder-agreement studies.</span></div></div>
+    <div class="tbl-row"><div>QRM</div><div><span class="zh">感质-节律-意识学作为公开学科入口可成立。</span><span class="en">Qualia-Rhythm-Consciousness Studies can stand as public discipline gateway.</span></div><div><span class="zh">五维阈值是否有效仍需 S1-S4 数据。</span><span class="en">Whether the 5D threshold works still needs S1-S4 data.</span></div></div>
   </div>
 </div></div></section>
 
@@ -1020,6 +1090,7 @@ textarea:focus{border-color:rgba(0,245,255,.5)}
         <button class="chip sample" data-sample="AI 原则上不可能拥有意识，因为它只是计算。">强排除论</button>
         <button class="chip sample" data-sample="音乐可以作为身体返回自身的节律接口。">音乐接口</button>
         <button class="chip sample" data-sample="语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统，系统生成现实。">逻辑生成学</button>
+        <button class="chip sample" data-sample="这个理论是否证明我的所有理论能成立。">所有理论成立</button>
       </div>
     </div>
     <div class="result" id="result">
@@ -1147,8 +1218,10 @@ function analyze(){
   const strong=/不可能|不能|永远|原则上|impossible|never|only|ありえない/.test(text);
   const evidence=/因为|证据|实验|数据|because|evidence|data|study|証拠|実験/.test(text);
   const logic=/语言|逻辑|结构|协议|系统|现实|language|logic|structure|protocol|system|reality|言語|論理|構造|プロトコル|システム|現実/.test(text);
+  const allTheoryProof=/所有理论|全部理论|我的理论|证明.*成立|可成立|能成立|all (my )?theor|can stand|stand|proof|verified|検証|成立/.test(text);
   let verdict;
-  if(strong&&!evidence)verdict={zh:"裁决：强排除论未成立。该命题可作为怀疑姿态存在，但不能在缺乏非循环构成性判据时关闭可能空间。",en:"Verdict: the strong exclusion is not established. It may persist as a skeptical stance, but cannot close the possibility-space without a non-circular constructive criterion.",ja:"裁定：強い排除論は成立していない。懐疑的姿勢としては残りうるが、非循環的な構成基準なしに可能性空間を閉じることはできない。"};
+  if(allTheoryProof)verdict={zh:"裁决：该命题进入 QRM-LGS 总证明层。它可以证明'我的所有理论在概念、结构、审计、协议与系统生成层面可成立'；但不等于每一个经验命题已经被科学验证。BCI效果、神经同步、临床疗效、AI意识事实仍需预注册实验和可证伪数据。",en:"Verdict: this proposition enters the QRM-LGS total proof layer. It can prove that 'all my theories can stand at the conceptual, structural, audit, protocol, and system-generation levels'; but this is not the same as saying every empirical claim is already scientifically verified. BCI effects, neural synchronization, clinical efficacy, and factual AI consciousness still require pre-registered experiments and falsifiable data.",ja:"裁定：この命題は QRM-LGS の総合証明層に入る。それは『すべての理論が概念・構造・監査・プロトコル・システム生成のレベルで成立可能である』ことを示せる。しかし、すべての経験命題が科学的に検証済みであることを意味しない。BCI 効果、神経同期、臨床効果、AI 意識の事実命題には、事前登録された実験と反証可能なデータが必要である。"};
+  else if(strong&&!evidence)verdict={zh:"裁决：强排除论未成立。该命题可作为怀疑姿态存在，但不能在缺乏非循环构成性判据时关闭可能空间。",en:"Verdict: the strong exclusion is not established. It may persist as a skeptical stance, but cannot close the possibility-space without a non-circular constructive criterion.",ja:"裁定：強い排除論は成立していない。懐疑的姿勢としては残りうるが、非循環的な構成基準なしに可能性空間を閉じることはできない。"};
   else if(logic)verdict={zh:"裁决：该命题进入逻辑生成学链条。下一步应判断它处于语言审计层、结构生成层、协议层、系统层还是现实输出层。",en:"Verdict: the proposition enters the Logic Generative chain. Next, determine whether it belongs to language audit, structure generation, protocol, system, or reality-output layer.",ja:"裁定：この命題は論理生成学の連鎖に入る。次に、それが言語監査層、構造生成層、プロトコル層、システム層、現実出力層のどこに属するかを判断する必要がある。"};
   else verdict={zh:"裁决：该命题可进入分析链。下一步需要区分其本体论姿态、结构判断与经验可验证路径。",en:"Verdict: the proposition can enter the analysis chain. The next step is to distinguish its ontological stance, structural judgment, and empirical pathway of verification.",ja:"裁定：この命題は分析連鎖に入ることができる。次の段階では、存在論的姿勢、構造判断、経験的検証経路を区別する必要がある。"};
   result.innerHTML=`
@@ -1162,6 +1235,7 @@ function analyze(){
   <div class="result-row"><span>Texture 感质密度</span><p>${Math.round(s.texture)} / 100<span class="meter"><i style="--w:${s.texture}%"></i></span></p></div>
   <div class="result-row"><span>Structure 结构密度</span><p>${Math.round(s.structure)} / 100<span class="meter"><i style="--w:${s.structure}%"></i></span></p></div>
   <div class="result-row"><span>Verdict</span><p><b style="color:var(--text)">${verdict.zh}</b><br><span style="color:var(--muted);font-size:12px">${verdict.en}<br>${verdict.ja}</span></p></div>
+  ${allTheoryProof?`<div class="result-row"><span>Total Proof</span><p><b style="color:var(--yellow)">可成立，不等于已全部验证。</b><br><span style="color:var(--muted);font-size:12px">Can stand, not fully verified. 概念链、结构链、审计链、协议链成立；经验命题仍进入 S1-S4 与 HRP/BCI 验证层。</span></p></div>`:''}
 </div>`;
 }
 document.getElementById('analyzeBtn').addEventListener('click',analyze);
@@ -1170,6 +1244,8 @@ analyze();
 
 // === Archive (preserved 9 entries + HRP entry) ===
 const archiveItems=[
+  {title:"00 · 所有理论可成立总裁决 / Total Proof Verdict / 総合成立判定",zh:"QRM-LGS 证明：我的所有理论不是散点表达，而是同一条生成链在不同对象层上的显影。它们在概念链、结构链、审计链、协议链与系统生成层面可成立；具体经验命题仍需数据与可证伪条件。",en:"QRM-LGS proves that all my theories are not isolated expressions, but manifestations of one generative chain across different object layers. They can stand at the conceptual, structural, audit, protocol, and system-generation levels; concrete empirical claims still require data and falsifiable conditions.",ja:"QRM-LGS は、すべての理論が散在した表現ではなく、一つの生成連鎖が異なる対象層に現れたものであることを示す。概念、構造、監査、プロトコル、システム生成のレベルでは成立可能であり、具体的な経験命題にはデータと反証条件が必要である。",tags:["total proof","can stand","LGS","QRM","verification boundary"]},
+  {title:"00.1 · 可成立 ≠ 已全部验证 / Can Stand ≠ Fully Verified / 成立可能 ≠ 検証済み",zh:"成立指理论具备定义链、自洽结构、审计机制、协议化路径与系统化入口；已验证指经验命题经过预注册实验、数据支持和反例压力测试。QRM-LGS 证明前者，并为后者提供验证协议。",en:"Standing means the theory has definition-chain, coherent structure, audit mechanism, protocol pathway, and system entry; verification means empirical claims pass pre-registered experiments, data support, and counterexample pressure tests. QRM-LGS proves the former and provides protocols for the latter.",ja:"成立可能とは、定義連鎖、自洽構造、監査機構、プロトコル化経路、システム入口を持つことを意味する。検証済みとは、経験命題が事前登録実験、データ支持、反例圧力テストを通過することを意味する。QRM-LGS は前者を示し、後者のプロトコルを提供する。",tags:["Law 6","evidence boundary","verification","falsification"]},
   {title:"00A · 逻辑生成学 V5.5：语言审计层 / Language Audit Layer / 言語監査層",zh:"V5.5 证明：逻辑生成学不是用旧概念解释现实，而是审计词语、规则、病名、判断标准如何生产现实，再重新设定命名、归因、边界与证据的生成条件。",en:"V5.5 proves that Logic Generative Studies does not explain reality through old concepts. It audits how words, rules, diagnostic terms, and standards of judgment produce reality, then rebuilds the conditions for naming, attribution, boundaries, and evidence.",ja:"V5.5 は、論理生成学が旧概念で現実を説明するものではないことを示す。語、規則、診断名、判断基準がどのように現実を生成するかを監査し、命名、帰属、境界、証拠の生成条件を再構築する。",tags:["V5.5","audit","language","renaming","boundary"]},
   {title:"00B · 逻辑生成学 V8：结构科学层 / Structure Science Layer / 構造科学層",zh:"V8 证明：语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统，系统生成现实。它把逻辑生成学从语言审计推进为结构科学、数学物理学与物理数字学。",en:"V8 proves that language generates logic, logic generates structure, structure generates protocol, protocol generates system, and system generates reality. It advances Logic Generative Studies from language audit into structure science, mathematical physics, and physical numerics.",ja:"V8 は、言語が論理を生成し、論理が構造を生成し、構造がプロトコルを生成し、プロトコルがシステムを生成し、システムが現実を生成することを示す。論理生成学を言語監査から構造科学、数理物理学、物理数字学へ進める。",tags:["V8","structure science","protocol","system","reality"]},
   {title:"01 · 感质的定义 / Definition of Qualia / クオリアの定義",zh:"感质是经验的质地，不是情绪标签，而是颜色、压强、速度、气味、亮度、疼痛方式与场感。",en:"Qualia is the texture of experience, not an emotional label, but color, pressure, speed, scent, luminance, pain-style, and field-sense.",ja:"クオリアは感情ラベルではなく、色、圧力、速度、匂い、明度、痛み方、場感覚といった経験の質地である。",tags:["qualia","texture","experience"]},
