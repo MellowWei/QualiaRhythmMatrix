@@ -1,0 +1,23 @@
+## robots.txt for QualiaRhythmMatrix
+## mellowwei.github.io/QualiaRhythmMatrix/
+## 2026-05-15
+
+User-agent: *
+Allow: /
+
+Sitemap: https://mellowwei.github.io/QualiaRhythmMatrix/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: *
+Disallow: /private/
